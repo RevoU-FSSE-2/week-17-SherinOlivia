@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { DB } from '../config/dbConnection';
+import { DBLocal } from '../config/dbConnection';
 import { errorHandling } from './errorHandling';
 import { RowDataPacket } from 'mysql2';
 
@@ -9,20 +9,20 @@ const createNewOrder = async (req: Request, res: Response) => {
         const { product_name, order_qty } =  req.body;
         if (role == "staff" || role == "admin") {
             const { custId, product_name, order_qty } =  req.body;
-            const [newOrder] = await DB.promise().query(`INSERT INTO w17.orders (custId, product_name, order_qty, total, status, order_datetime, isDeleted)
+            const [newOrder] = await DBLocal.promise().query(`INSERT INTO w17.orders (custId, product_name, order_qty, total, status, order_datetime, isDeleted)
             VALUES (?, ?, ?, (SELECT price FROM w17.products WHERE name = ?) * ?, ?, ?, ?)`,
             [custId, product_name, order_qty, product_name, order_qty, 'pending', new Date(), '0']) as RowDataPacket[];
             
-            const [createdOrder] = await DB.promise().query(`SELECT * FROM w17.orders WHERE id = ?`,
+            const [createdOrder] = await DBLocal.promise().query(`SELECT * FROM w17.orders WHERE id = ?`,
             [newOrder.insertId]) as RowDataPacket[];
             
             return res.status(200).json(errorHandling(createdOrder[0], null));
         } else {
-            const [newOrder] = await DB.promise().query(`INSERT INTO w17.orders (custId, product_name, order_qty, total, status, order_datetime, isDeleted)
+            const [newOrder] = await DBLocal.promise().query(`INSERT INTO w17.orders (custId, product_name, order_qty, total, status, order_datetime, isDeleted)
             VALUES (?, ?, ?, (SELECT price FROM w17.products WHERE name = ?) * ?, ?, ?, ?)`,
             [id, product_name, order_qty, product_name, order_qty, 'pending', new Date(), '0']) as RowDataPacket[];
             
-           const [createdOrder] = await DB.promise().query(`SELECT * FROM w17.orders WHERE id = ?`,
+           const [createdOrder] = await DBLocal.promise().query(`SELECT * FROM w17.orders WHERE id = ?`,
             [newOrder.insertId]) as RowDataPacket[];
             
             return res.status(200).json(errorHandling(createdOrder[0], null));
@@ -39,7 +39,7 @@ const updateOrderStatus = async (req: Request, res: Response) => {
     const {status} = req.body
 
     try {
-        const getOrder = await DB.promise().query(`SELECT * FROM w17.orders WHERE id = ? AND isDeleted = ?`,
+        const getOrder = await DBLocal.promise().query(`SELECT * FROM w17.orders WHERE id = ? AND isDeleted = ?`,
         [id, '0']) as RowDataPacket[]
 
         if (getOrder[0].length > 0) {
@@ -48,10 +48,10 @@ const updateOrderStatus = async (req: Request, res: Response) => {
             return
 
             } else {
-                await DB.promise().query(`UPDATE w17.orders SET status = ? WHERE id = ?`,
+                await DBLocal.promise().query(`UPDATE w17.orders SET status = ? WHERE id = ?`,
                 [status, id])
     
-                const updatedOrder = await DB.promise().query(`SELECT * FROM w17.orders WHERE id = ?`,
+                const updatedOrder = await DBLocal.promise().query(`SELECT * FROM w17.orders WHERE id = ?`,
                 [id]) as RowDataPacket[]
                 return res.status(200).json(errorHandling(updatedOrder[0][0], null)); 
             }
@@ -70,7 +70,7 @@ const getAllOrders = async (req: Request, res: Response) => {
 
         const { role, id } = (req as any).user;
         if (role === "cust") {
-            const getOrders = await DB.promise().query(`
+            const getOrders = await DBLocal.promise().query(`
                 SELECT o.id, o.status, o.custId, u.name, u.address, o.product_name, o.order_qty, o.total, o.order_datetime FROM  w17.orders as o LEFT JOIN w17.users as u ON o.custId = u.id
                 WHERE o.CustId = ? AND o.isDeleted = ?`,[id, '0']) as RowDataPacket[];
 
@@ -83,7 +83,7 @@ const getAllOrders = async (req: Request, res: Response) => {
             }
 
         } else if (role == "staff" || role == "admin") {
-            const getOrders = await DB.promise().query(`
+            const getOrders = await DBLocal.promise().query(`
             SELECT o.id, o.status, o.custId, u.name, u.address, o.product_name, o.order_qty, o.total, o.order_datetime FROM  w17.orders as o LEFT JOIN w17.users as u ON o.custId = u.id WHERE o.isDeleted = ?`, ['0']) as RowDataPacket[];
 
             if (getOrders[0].length > 0) {
@@ -107,7 +107,7 @@ const getAllOrders = async (req: Request, res: Response) => {
 const getAllCustOrders = async (req: Request, res: Response) => {
     try {
         const userId = req.params.custId
-        const getCustOrders = await DB.promise().query(`
+        const getCustOrders = await DBLocal.promise().query(`
         SELECT o.id, o.status, o.custId, u.name, u.address, o.product_name, o.order_qty, o.total, o.order_datetime FROM w17.orders as o LEFT JOIN w17.users as u ON o.custId = u.id
         WHERE o.CustId = ? AND isDeleted = ?`,[userId, '0']) as RowDataPacket[];
 
@@ -126,14 +126,14 @@ const deleteOrder = async (req: Request, res: Response) => {
     try {
         const orderId = req.params.orderId
         const {id, role} = (req as any).user
-        const checkOrder = await DB.promise().query(`
+        const checkOrder = await DBLocal.promise().query(`
         SELECT o.id, o.status, o.custId, u.name, u.address, o.product_name, o.order_qty, o.total, o.order_datetime FROM w17.orders as o LEFT JOIN w17.users as u ON o.custId = u.id
         WHERE o.id = ?`, [orderId]) as RowDataPacket[];
 
         if (role == "cust") {
             if (checkOrder[0].length > 0 && checkOrder[0][0].custId == id) {
 
-                await DB.promise().query(
+                await DBLocal.promise().query(
                     `UPDATE w17.orders SET isDeleted = ? WHERE w17.orders.id = ? AND w17.orders.custId = ?`,
                     ['1', orderId, id]);
                 
@@ -144,7 +144,7 @@ const deleteOrder = async (req: Request, res: Response) => {
             }
         } else {
             if (checkOrder[0].length > 0) {
-                await DB.promise().query(
+                await DBLocal.promise().query(
                     `UPDATE w17.orders SET isDeleted = ? WHERE w17.orders.id = ? AND w17.orders.custId = ?`,
                     ['1', orderId, id]);
                 
@@ -163,7 +163,7 @@ const deleteOrder = async (req: Request, res: Response) => {
 // get order history ==> admin
 const getOrderHistory = async (req: Request, res: Response) => {
     try {
-        const [orderHistory] = await DB.promise().query(`
+        const [orderHistory] = await DBLocal.promise().query(`
         SELECT o.id, o.status, o.custId, u.name, u.address, o.product_name, 
         o.order_qty, o.total, o.order_datetime FROM w17.orders as o 
         LEFT JOIN w17.users as u ON o.custId = u.id`) as RowDataPacket[];

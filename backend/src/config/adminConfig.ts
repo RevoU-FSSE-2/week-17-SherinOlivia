@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
-import { DB } from './dbConnection';
+import { DBLocal } from './dbConnection';
 import 'dotenv/config'
 
 const insertAdmin = async (req?: Request, res?: Response) => {
     try {
-        const [adminCheck] = await DB.promise().query(`SELECT * FROM w17.users WHERE role = 'admin'`);
+        const [adminCheck] = await DBLocal.promise().query(`SELECT * FROM w17.users WHERE role = 'admin'`);
         
         if (Object.keys(adminCheck).length === 0) {
             const adminUsername = process.env.ADMIN_USERNAME;
@@ -13,7 +13,7 @@ const insertAdmin = async (req?: Request, res?: Response) => {
             const adminPass = process.env.ADMIN_PASS;
             const hashedPass = await bcrypt.hash(adminPass!, 10);
             
-        await DB.promise().query(`INSERT INTO w17.users (username, email, password, role) VALUES ('${adminUsername}','${adminEmail}', '${hashedPass}', 'admin')`)
+        await DBLocal.promise().query(`INSERT INTO w17.users (username, email, password, role) VALUES ('${adminUsername}','${adminEmail}', '${hashedPass}', 'admin')`)
         console.log("Admin Account successfully created! Welcome!");    
 
     } else {
