@@ -1,0 +1,25 @@
+.categoryList {
+    min-width: 90vw;
+    min-height: 50vh;
+    padding: 5vh 5vw;
+}
+
+.categoryTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 3.5vh;
+}
+
+.loading {
+    font-size: 42px;
+    color:black
+}
+
+.actionButton {
+    margin-right: 5px;
+}
+
+.userButton {
+    margin-right: 5px;
+}

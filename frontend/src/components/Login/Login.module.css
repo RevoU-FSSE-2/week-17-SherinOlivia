@@ -1,0 +1,22 @@
+.error {
+    color: red
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 25vh 25vw;
+}
+
+.body {
+    grid-column: 1 / span 3;
+}
+
+.card {
+    min-height: 5vh;
+    min-width: 50vw;
+}
+
+.link {
+    text-decoration: underline;
+}

@@ -1,0 +1,28 @@
+
+.profilePage {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    padding: 25vh 25vw;
+}
+
+.profile {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    width: 1fr;
+    border-style: groove;
+}
+
+.profileBody {
+    border-bottom: 2px solid rgb(161, 161, 161);
+    margin: 10px 75px;
+}
+
+.profileData {
+    font-weight: bold;
+}
+
+.link {
+    text-decoration: underline;
+    display: flex;
+    justify-content: center;
+    margin: 75px 75px 0;
+}
