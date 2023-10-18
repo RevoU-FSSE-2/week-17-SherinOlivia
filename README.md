@@ -3,6 +3,8 @@
 <p align="justify">For this week's assignment, we were tasked with intregate our backend RestAPIs with our frontend UI (React). Project is built using Typescript programming language </p>
 
 **Project Theme: Order & Inventory Tracker**
+<br>
+
 **Tools used:**
 1. Backend
 - **BCrypt**
@@ -25,7 +27,7 @@
 
 ## Deployed link: 
 <p align="center">
-<a href="x">x</a>||
+<a href="x">x</a> ||
 <a href="x">x</a>
 </p> 
 <br>
