@@ -1,6 +1,6 @@
-# Assignment Overview
+# Front End Overview
 
-<p align="justify">For this week's assignment, we were tasked with building a page using `React` and `TypeScript`, with UI components from the UI library of our choice, I decided to delve into `Ant Design`. </p>
+<p align="justify">For this project, we were tasked with building a page using `React` and `TypeScript`, with UI components from the UI library of our choice, I decided to delve into `Ant Design`. </p>
 
 <p align="justify">When visiting the page, Users can access the Login Form or Register Form if they haven't registered. After logging in, Users will be redirected to the Main/Homepage, where Users are able to see 'List of Categories'. </p>
 <p align="justify">On the List of Categories (homepage), Users would then be able to access the rest of the features, such as creating new categories, editing said categories and deleting category items.  All form paths are defined using `react-router-dom`, and each form is validated using `Formik` and `Yup`. As an additional security measure, API URLs are stored using `dotenv`.</p>
