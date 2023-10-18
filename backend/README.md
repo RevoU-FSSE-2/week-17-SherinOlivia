@@ -1,7 +1,6 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/GB9tUzun)
-# Week 16 Assignment Overview
+# Backend Overview
 
-For this week's assignment, we are tasked to implement cookies and limit the login attempts in our backend project.
+For this project, we were tasked to implement cookies and limit the login attempts.
 
 The capabilities of the project are:
 1. CRUD Implementation 
