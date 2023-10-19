@@ -160,7 +160,6 @@ const deleteOrder = async (req: Request, res: Response) => {
     }
 }
 
-// get order history ==> admin
 const getOrderHistory = async (req: Request, res: Response) => {
     try {
         const [orderHistory] = await DBLocal.promise().query(`

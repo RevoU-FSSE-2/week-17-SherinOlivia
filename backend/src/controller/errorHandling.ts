@@ -1,4 +1,4 @@
-import { DB } from '../config/dbConnection';
+import { DBLocal } from '../config/dbConnection';
 import { QueryError } from 'mysql2';
 
 // Error Handling

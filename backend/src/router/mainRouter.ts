@@ -10,7 +10,7 @@ const router = express.Router();
 router.get("/", function (req: Request, res: Response) {
     res.status(200).json({
         success: true,
-        message: "Hello, this is Sherin Olivia's Milestone Project 2 (Week 11)!"
+        message: "Hello, this is Sherin Olivia's Week 17 Assignment!"
     })
 })
 

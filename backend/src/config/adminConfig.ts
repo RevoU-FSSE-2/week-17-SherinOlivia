@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
-import { DBLocal } from './dbConnection';
 import 'dotenv/config'
+import { DBLocal } from './dbConnection';
 
 const insertAdmin = async (req?: Request, res?: Response) => {
     try {
@@ -21,7 +21,7 @@ const insertAdmin = async (req?: Request, res?: Response) => {
         return
     }
     } catch (error) {
-        console.error("Errorr!! Can't input Admin data");
+        console.error("Errorr!! Can't input Admin data", error);
     }
 }
 

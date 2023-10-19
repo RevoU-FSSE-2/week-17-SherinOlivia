@@ -3,7 +3,6 @@ import { DBLocal } from '../config/dbConnection';
 import { errorHandling } from './errorHandling';
 import { RowDataPacket } from 'mysql2';
 
-// Create new Product
 const createNewProduct = async (req: Request, res: Response) => {
     try {
         const { name, qty, price } = req.body
@@ -24,8 +23,7 @@ const createNewProduct = async (req: Request, res: Response) => {
     }
 }
 
-// Update Product Qty & Price
-
+// Update Qty & Price
  const updateProduct = async (req: Request, res: Response) => {
     try {
         const id = req.params.id

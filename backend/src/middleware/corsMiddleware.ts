@@ -2,7 +2,7 @@ import cors, { CorsOptions } from "cors";
 import { Application, Request } from "express";
 
 const XOrigin = [
-  "X",
+  "http://localhost:5173",
 ];
 const YOrigin = [
   "Y",
@@ -16,7 +16,7 @@ const corsOptionsDelegate = (req: any,
   if (clientXOrigin) {
     callback(null, {
       origin: true,
-      methods: "GET, POST, PUT, DELETE",
+      methods: "GET, POST, PUT, PATCH, DELETE",
     });
   } else if (clientYOrigin) {
     callback(null, {
