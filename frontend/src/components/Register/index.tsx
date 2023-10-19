@@ -14,7 +14,7 @@ const passwordValidationError = (str: string) => {
 }
 
 const validationSchema = Yup.object().shape({
-    name: Yup.string().required('Please Enter Your Name'),
+    username: Yup.string().required('Please Enter Your Username'),
     email: Yup.string().email("Invalid Email!").required('Please Enter Your Email'),
     password: Yup.string().min(8, "Password must have at least 8 characters")
     .matches(/[0-9]/, passwordValidationError("digit"))
@@ -36,18 +36,18 @@ const validationSchema = Yup.object().shape({
             <Col span={8} className={styles.body}>
                 <Card title={"Register"} className={styles.card}>
                     <Formik 
-                    initialValues = {{name: "", email: "", password: ""}}
+                    initialValues = {{username: "", email: "", password: ""}}
                     validationSchema={validationSchema}
                     onSubmit={handleRegister}>
                         <Form name="basic" autoComplete="off">
                     
-                            <AntForm.Item label="Name">
+                            <AntForm.Item label="Username">
                                 <div>
                                     <Field prefix={<SmileOutlined className="site-form-item-icon" />} 
-                                    name="name" as={Input} placeholder="Enter Your Name" />
+                                    name="username" as={Input} placeholder="Enter Your Username" />
                                     
                                     <div className={styles.error}>
-                                        <ErrorMessage name="name" />
+                                        <ErrorMessage name="username" />
                                     </div>
                                 </div>
                             </AntForm.Item>

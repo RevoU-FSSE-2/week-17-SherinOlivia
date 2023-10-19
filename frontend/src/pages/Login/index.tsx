@@ -7,6 +7,7 @@ const Login = () => {
   const apiUrl = import.meta.env.VITE_REACT_APP_LOGIN_URL
 
   const handleLogin = async (values: LoginInfo) => {
+
     console.log(`Successfully logged in`, values)
     try {
         const response = await fetch (apiUrl, {
@@ -27,6 +28,7 @@ const Login = () => {
         } else {
             alert(data.errors)
         }
+        
     } catch (error) {
         console.error(error)
         alert("Login Failedddd...!")
