@@ -1,0 +1,23 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const userrouter = express_1.default.Router();
+const authenticationMiddleware_1 = __importDefault(require("../middleware/authenticationMiddleware"));
+const authorizationMiddleware_1 = __importDefault(require("../middleware/authorizationMiddleware"));
+const usersController_1 = require("../controller/usersController");
+userrouter.post('/register', usersController_1.registerUser);
+userrouter.post('/admin/register', authenticationMiddleware_1.default, (0, authorizationMiddleware_1.default)(['admin']), usersController_1.registerUserByAdmin);
+userrouter.post('/login', usersController_1.loginUser);
+userrouter.post('/refresh', authenticationMiddleware_1.default, usersController_1.refreshTokenRequest);
+userrouter.post('/logout', usersController_1.logoutUser);
+userrouter.post('/resetpassword/request', usersController_1.resetPasswordRequest);
+userrouter.post('/resetpassword', usersController_1.resetPassword);
+userrouter.get('/cust', authenticationMiddleware_1.default, (0, authorizationMiddleware_1.default)(['staff', 'admin']), usersController_1.getAllCust);
+userrouter.get('/profile/:id', authenticationMiddleware_1.default, (0, authorizationMiddleware_1.default)(['cust', 'staff', 'admin']), usersController_1.getOneUser);
+userrouter.get('/profile', authenticationMiddleware_1.default, (0, authorizationMiddleware_1.default)(['cust', 'staff', 'admin']), usersController_1.userProfile);
+userrouter.patch('/update/:id', authenticationMiddleware_1.default, (0, authorizationMiddleware_1.default)(['cust', 'staff', 'admin']), usersController_1.updateUser);
+userrouter.get('/', authenticationMiddleware_1.default, (0, authorizationMiddleware_1.default)(['admin']), usersController_1.getAllUser);
+exports.default = userrouter;
