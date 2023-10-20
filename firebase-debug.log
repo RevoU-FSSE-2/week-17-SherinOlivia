@@ -1,0 +1,532 @@
+[debug] [2023-10-20T23:01:36.481Z] ----------------------------------------------------------------------
+[debug] [2023-10-20T23:01:36.483Z] Command:       D:\Program Files (x86)\nodejs\node.exe C:\Users\Sherin Olivia\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only functions
+[debug] [2023-10-20T23:01:36.483Z] CLI Version:   12.7.0
+[debug] [2023-10-20T23:01:36.484Z] Platform:      win32
+[debug] [2023-10-20T23:01:36.484Z] Node Version:  v18.17.0
+[debug] [2023-10-20T23:01:36.485Z] Time:          Sat Oct 21 2023 06:01:36 GMT+0700 (Western Indonesia Time)
+[debug] [2023-10-20T23:01:36.485Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-10-20T23:01:36.595Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-10-20T23:01:36.596Z] > authorizing via signed-in user (sochronicle@gmail.com)
+[debug] [2023-10-20T23:01:36.596Z] [iam] checking project revou-fullstack for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2023-10-20T23:01:36.599Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/revou-fullstack:testIamPermissions [none]
+[debug] [2023-10-20T23:01:36.599Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/revou-fullstack:testIamPermissions x-goog-quota-user=projects/revou-fullstack
+[debug] [2023-10-20T23:01:36.600Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/revou-fullstack:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2023-10-20T23:01:38.184Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/revou-fullstack:testIamPermissions 200
+[debug] [2023-10-20T23:01:38.184Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/revou-fullstack:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2023-10-20T23:01:38.185Z] [iam] error while checking permissions, command may fail: FirebaseError: Authorization failed. This account is missing the following required permissions on project revou-fullstack:
+
+  cloudfunctions.functions.delete
+[debug] [2023-10-20T23:01:38.186Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/revou-fullstack/serviceAccounts/revou-fullstack@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2023-10-20T23:01:38.187Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/revou-fullstack/serviceAccounts/revou-fullstack@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2023-10-20T23:01:39.290Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/revou-fullstack/serviceAccounts/revou-fullstack@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2023-10-20T23:01:39.291Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/revou-fullstack/serviceAccounts/revou-fullstack@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[info] 
+[info] === Deploying to 'revou-fullstack'...
+[info] 
+[info] i  deploying functions 
+[debug] [2023-10-20T23:01:39.296Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/revou-fullstack [none]
+[debug] [2023-10-20T23:01:39.967Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/revou-fullstack 200
+[debug] [2023-10-20T23:01:39.967Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/revou-fullstack {"projectId":"revou-fullstack","projectNumber":"17594433276","displayName":"revou-fullstack","name":"projects/revou-fullstack","resources":{"hostingSite":"revou-fullstack"},"state":"ACTIVE","etag":"1_940a0d2e-d83a-45ea-9ebc-6387c0346aa1"}
+[info] i  functions: preparing codebase default for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2023-10-20T23:01:39.971Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/cloudfunctions.googleapis.com [none]
+[debug] [2023-10-20T23:01:39.971Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/revou-fullstack
+[debug] [2023-10-20T23:01:39.973Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/runtimeconfig.googleapis.com [none]
+[debug] [2023-10-20T23:01:39.973Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/runtimeconfig.googleapis.com x-goog-quota-user=projects/revou-fullstack
+[debug] [2023-10-20T23:01:39.974Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/cloudbuild.googleapis.com [none]
+[debug] [2023-10-20T23:01:39.975Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/cloudbuild.googleapis.com x-goog-quota-user=projects/revou-fullstack
+[debug] [2023-10-20T23:01:39.976Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/artifactregistry.googleapis.com [none]
+[debug] [2023-10-20T23:01:39.976Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/artifactregistry.googleapis.com x-goog-quota-user=projects/revou-fullstack
+[debug] [2023-10-20T23:01:41.482Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/runtimeconfig.googleapis.com 200
+[debug] [2023-10-20T23:01:41.482Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2023-10-20T23:01:41.487Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/cloudfunctions.googleapis.com 200
+[debug] [2023-10-20T23:01:41.487Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/cloudfunctions.googleapis.com [omitted]
+[info] +  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2023-10-20T23:01:41.488Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/artifactregistry.googleapis.com 200
+[debug] [2023-10-20T23:01:41.488Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/artifactregistry.googleapis.com [omitted]
+[info] +  artifactregistry: required API artifactregistry.googleapis.com is enabled 
+[debug] [2023-10-20T23:01:41.514Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/cloudbuild.googleapis.com 200
+[debug] [2023-10-20T23:01:41.514Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/cloudbuild.googleapis.com [omitted]
+[info] +  functions: required API cloudbuild.googleapis.com is enabled 
+[debug] [2023-10-20T23:01:41.515Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/revou-fullstack/adminSdkConfig [none]
+[debug] [2023-10-20T23:01:42.229Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/revou-fullstack/adminSdkConfig 200
+[debug] [2023-10-20T23:01:42.230Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/revou-fullstack/adminSdkConfig {"projectId":"revou-fullstack","storageBucket":"revou-fullstack.appspot.com"}
+[debug] [2023-10-20T23:01:42.231Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/revou-fullstack/configs [none]
+[debug] [2023-10-20T23:01:43.868Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/revou-fullstack/configs 403
+[debug] [2023-10-20T23:01:43.868Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/revou-fullstack/configs {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
+[debug] HTTP Error: 403, The caller does not have permission
+[debug] [2023-10-20T23:01:43.870Z] Validating nodejs source
+[debug] [2023-10-20T23:01:52.513Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "18"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^11.8.0",
+    "firebase-functions": "^4.3.1"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^3.1.0"
+  },
+  "private": true
+}
+[debug] [2023-10-20T23:01:52.514Z] Building nodejs source
+[info] i  functions: Loading and analyzing source code for codebase default to determine what to deploy 
+[debug] [2023-10-20T23:01:52.516Z] Could not find functions.yaml. Must use http discovery
+[debug] [2023-10-20T23:01:52.531Z] Found firebase-functions binary at 'E:\RevoUBootcamp\week-17-SherinOlivia\backend\dist\node_modules\.bin\firebase-functions'
+[info] Serving at port 8785
+
+[error] node:events:492
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::8785
+    at Server.setupListenHandle [as _listen2] (node:net:1751:16)
+    at listenInCluster (node:net:1799:12)
+    at Server.listen (node:net:1887:7)
+    at Function.listen (E:\RevoUBootcamp\week-17-SherinOlivia\backend\dist\node_modules\express\lib\application.js:635:24)
+    at Object.<anonymous> (E:\RevoUBootcamp\week-17-SherinOlivia\backend\dist\index.js:62:5)
+    at Module._compile (node:internal/modules/cjs/loader:1256:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1310:10)
+    at Module.load (node:internal/modules/cjs/loader:1119:32)
+    at Module._load (node:internal/modules/cjs/loader:960:12)
+    at Module.require (node:internal/modules/cjs/loader:1143:19)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1778:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 8785
+}
+
+Node.js v18.17.0
+
+[debug] [2023-10-20T23:01:53.668Z] Failed to call quitquitquit. This often means the server failed to start request to http://localhost:8785/__/quitquitquit failed, reason: connect ECONNREFUSED ::1:8785 {"message":"request to http://localhost:8785/__/quitquitquit failed, reason: connect ECONNREFUSED ::1:8785","type":"system","errno":"ECONNREFUSED","code":"ECONNREFUSED"}
+[debug] [2023-10-20T23:01:53.787Z] FetchError: request to http://127.0.0.1:8785/__/functions.yaml failed, reason: read ECONNRESET
+    at ClientRequest.<anonymous> (C:\Users\Sherin Olivia\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\node-fetch\lib\index.js:1501:11)
+    at ClientRequest.emit (node:events:514:28)
+    at ClientRequest.emit (node:domain:489:12)
+    at Socket.socketErrorListener (node:_http_client:501:9)
+    at Socket.emit (node:events:514:28)
+    at Socket.emit (node:domain:489:12)
+    at emitErrorNT (node:internal/streams/destroy:151:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:116:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2023-10-20T23:03:44.769Z] ----------------------------------------------------------------------
+[debug] [2023-10-20T23:03:44.771Z] Command:       D:\Program Files (x86)\nodejs\node.exe C:\Users\Sherin Olivia\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only functions
+[debug] [2023-10-20T23:03:44.772Z] CLI Version:   12.7.0
+[debug] [2023-10-20T23:03:44.773Z] Platform:      win32
+[debug] [2023-10-20T23:03:44.773Z] Node Version:  v18.17.0
+[debug] [2023-10-20T23:03:44.774Z] Time:          Sat Oct 21 2023 06:03:44 GMT+0700 (Western Indonesia Time)
+[debug] [2023-10-20T23:03:44.774Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-10-20T23:03:44.878Z] Field ".functions" in "firebase.json" is possibly invalid: should be object
+[debug] [2023-10-20T23:03:44.879Z] Object ".functions[0]" in "firebase.json" has unknown property: {"additionalProperty":"port"}
+[debug] [2023-10-20T23:03:44.879Z] Field ".functions" in "firebase.json" is possibly invalid: should match some schema in anyOf
+[debug] [2023-10-20T23:03:44.884Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-10-20T23:03:44.884Z] > authorizing via signed-in user (sochronicle@gmail.com)
+[debug] [2023-10-20T23:03:44.885Z] [iam] checking project revou-fullstack for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2023-10-20T23:03:44.887Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/revou-fullstack:testIamPermissions [none]
+[debug] [2023-10-20T23:03:44.888Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/revou-fullstack:testIamPermissions x-goog-quota-user=projects/revou-fullstack
+[debug] [2023-10-20T23:03:44.888Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/revou-fullstack:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2023-10-20T23:03:46.185Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/revou-fullstack:testIamPermissions 200
+[debug] [2023-10-20T23:03:46.186Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/revou-fullstack:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2023-10-20T23:03:46.186Z] [iam] error while checking permissions, command may fail: FirebaseError: Authorization failed. This account is missing the following required permissions on project revou-fullstack:
+
+  cloudfunctions.functions.delete
+[debug] [2023-10-20T23:03:46.187Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/revou-fullstack/serviceAccounts/revou-fullstack@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2023-10-20T23:03:46.187Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/revou-fullstack/serviceAccounts/revou-fullstack@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2023-10-20T23:03:46.634Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/revou-fullstack/serviceAccounts/revou-fullstack@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2023-10-20T23:03:46.634Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/revou-fullstack/serviceAccounts/revou-fullstack@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[info] 
+[info] === Deploying to 'revou-fullstack'...
+[info] 
+[info] i  deploying functions 
+[debug] [2023-10-20T23:03:46.642Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/revou-fullstack [none]
+[debug] [2023-10-20T23:03:47.230Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/revou-fullstack 200
+[debug] [2023-10-20T23:03:47.230Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/revou-fullstack {"projectId":"revou-fullstack","projectNumber":"17594433276","displayName":"revou-fullstack","name":"projects/revou-fullstack","resources":{"hostingSite":"revou-fullstack"},"state":"ACTIVE","etag":"1_940a0d2e-d83a-45ea-9ebc-6387c0346aa1"}
+[info] i  functions: preparing codebase default for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2023-10-20T23:03:47.234Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/cloudfunctions.googleapis.com [none]
+[debug] [2023-10-20T23:03:47.234Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/revou-fullstack
+[debug] [2023-10-20T23:03:47.235Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/runtimeconfig.googleapis.com [none]
+[debug] [2023-10-20T23:03:47.235Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/runtimeconfig.googleapis.com x-goog-quota-user=projects/revou-fullstack
+[debug] [2023-10-20T23:03:47.237Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/cloudbuild.googleapis.com [none]
+[debug] [2023-10-20T23:03:47.237Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/cloudbuild.googleapis.com x-goog-quota-user=projects/revou-fullstack
+[debug] [2023-10-20T23:03:47.238Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/artifactregistry.googleapis.com [none]
+[debug] [2023-10-20T23:03:47.238Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/artifactregistry.googleapis.com x-goog-quota-user=projects/revou-fullstack
+[debug] [2023-10-20T23:03:48.639Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/runtimeconfig.googleapis.com 200
+[debug] [2023-10-20T23:03:48.640Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2023-10-20T23:03:48.672Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/artifactregistry.googleapis.com 200
+[debug] [2023-10-20T23:03:48.672Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/artifactregistry.googleapis.com [omitted]
+[info] +  artifactregistry: required API artifactregistry.googleapis.com is enabled 
+[debug] [2023-10-20T23:03:48.700Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/cloudbuild.googleapis.com 200
+[debug] [2023-10-20T23:03:48.700Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/cloudbuild.googleapis.com [omitted]
+[info] +  functions: required API cloudbuild.googleapis.com is enabled 
+[debug] [2023-10-20T23:03:49.652Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/cloudfunctions.googleapis.com 200
+[debug] [2023-10-20T23:03:49.652Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/cloudfunctions.googleapis.com [omitted]
+[info] +  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2023-10-20T23:03:49.655Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/revou-fullstack/adminSdkConfig [none]
+[debug] [2023-10-20T23:03:50.232Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/revou-fullstack/adminSdkConfig 200
+[debug] [2023-10-20T23:03:50.233Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/revou-fullstack/adminSdkConfig {"projectId":"revou-fullstack","storageBucket":"revou-fullstack.appspot.com"}
+[debug] [2023-10-20T23:03:50.234Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/revou-fullstack/configs [none]
+[debug] [2023-10-20T23:03:51.731Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/revou-fullstack/configs 403
+[debug] [2023-10-20T23:03:51.731Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/revou-fullstack/configs {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
+[debug] HTTP Error: 403, The caller does not have permission
+[debug] [2023-10-20T23:03:51.733Z] Validating nodejs source
+[debug] [2023-10-20T23:03:54.627Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "18"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^11.8.0",
+    "firebase-functions": "^4.3.1"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^3.1.0"
+  },
+  "private": true
+}
+[debug] [2023-10-20T23:03:54.628Z] Building nodejs source
+[info] i  functions: Loading and analyzing source code for codebase default to determine what to deploy 
+[debug] [2023-10-20T23:03:54.630Z] Could not find functions.yaml. Must use http discovery
+[debug] [2023-10-20T23:03:54.642Z] Found firebase-functions binary at 'E:\RevoUBootcamp\week-17-SherinOlivia\backend\dist\node_modules\.bin\firebase-functions'
+[info] Serving at port 8033
+
+[error] node:events:492
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::8033
+    at Server.setupListenHandle [as _listen2] (node:net:1751:16)
+    at listenInCluster (node:net:1799:12)
+    at Server.listen (node:net:1887:7)
+    at Function.listen (E:\RevoUBootcamp\week-17-SherinOlivia\backend\dist\node_modules\express\lib\application.js:635:24)
+    at Object.<anonymous> (E:\RevoUBootcamp\week-17-SherinOlivia\backend\dist\index.js:62:5)
+    at Module._compile (node:internal/modules/cjs/loader:1256:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1310:10)
+    at Module.load (node:internal/modules/cjs/loader:1119:32)
+    at Module._load (node:internal/modules/cjs/loader:960:12)
+    at Module.require (node:internal/modules/cjs/loader:1143:19)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1778:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 8033
+}
+
+Node.js v18.17.0
+
+[debug] [2023-10-20T23:03:55.592Z] Failed to call quitquitquit. This often means the server failed to start request to http://localhost:8033/__/quitquitquit failed, reason: connect ECONNREFUSED ::1:8033 {"message":"request to http://localhost:8033/__/quitquitquit failed, reason: connect ECONNREFUSED ::1:8033","type":"system","errno":"ECONNREFUSED","code":"ECONNREFUSED"}
+[debug] [2023-10-20T23:03:55.724Z] FetchError: request to http://127.0.0.1:8033/__/functions.yaml failed, reason: read ECONNRESET
+    at ClientRequest.<anonymous> (C:\Users\Sherin Olivia\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\node-fetch\lib\index.js:1501:11)
+    at ClientRequest.emit (node:events:514:28)
+    at ClientRequest.emit (node:domain:489:12)
+    at Socket.socketErrorListener (node:_http_client:501:9)
+    at Socket.emit (node:events:514:28)
+    at Socket.emit (node:domain:489:12)
+    at emitErrorNT (node:internal/streams/destroy:151:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:116:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2023-10-20T23:04:44.842Z] ----------------------------------------------------------------------
+[debug] [2023-10-20T23:04:44.845Z] Command:       D:\Program Files (x86)\nodejs\node.exe C:\Users\Sherin Olivia\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only functions
+[debug] [2023-10-20T23:04:44.846Z] CLI Version:   12.7.0
+[debug] [2023-10-20T23:04:44.846Z] Platform:      win32
+[debug] [2023-10-20T23:04:44.846Z] Node Version:  v18.17.0
+[debug] [2023-10-20T23:04:44.848Z] Time:          Sat Oct 21 2023 06:04:44 GMT+0700 (Western Indonesia Time)
+[debug] [2023-10-20T23:04:44.848Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-10-20T23:04:44.967Z] Field ".functions" in "firebase.json" is possibly invalid: should be object
+[debug] [2023-10-20T23:04:44.968Z] Object ".functions[0]" in "firebase.json" has unknown property: {"additionalProperty":"port"}
+[debug] [2023-10-20T23:04:44.968Z] Field ".functions" in "firebase.json" is possibly invalid: should match some schema in anyOf
+[debug] [2023-10-20T23:04:44.973Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-10-20T23:04:44.974Z] > authorizing via signed-in user (sochronicle@gmail.com)
+[debug] [2023-10-20T23:04:44.974Z] [iam] checking project revou-fullstack for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2023-10-20T23:04:44.977Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/revou-fullstack:testIamPermissions [none]
+[debug] [2023-10-20T23:04:44.977Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/revou-fullstack:testIamPermissions x-goog-quota-user=projects/revou-fullstack
+[debug] [2023-10-20T23:04:44.977Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/revou-fullstack:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2023-10-20T23:04:46.277Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/revou-fullstack:testIamPermissions 200
+[debug] [2023-10-20T23:04:46.277Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/revou-fullstack:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2023-10-20T23:04:46.277Z] [iam] error while checking permissions, command may fail: FirebaseError: Authorization failed. This account is missing the following required permissions on project revou-fullstack:
+
+  cloudfunctions.functions.delete
+[debug] [2023-10-20T23:04:46.278Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/revou-fullstack/serviceAccounts/revou-fullstack@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2023-10-20T23:04:46.278Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/revou-fullstack/serviceAccounts/revou-fullstack@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2023-10-20T23:04:46.560Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/revou-fullstack/serviceAccounts/revou-fullstack@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2023-10-20T23:04:46.560Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/revou-fullstack/serviceAccounts/revou-fullstack@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[info] 
+[info] === Deploying to 'revou-fullstack'...
+[info] 
+[info] i  deploying functions 
+[debug] [2023-10-20T23:04:46.568Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/revou-fullstack [none]
+[debug] [2023-10-20T23:04:46.911Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/revou-fullstack 200
+[debug] [2023-10-20T23:04:46.912Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/revou-fullstack {"projectId":"revou-fullstack","projectNumber":"17594433276","displayName":"revou-fullstack","name":"projects/revou-fullstack","resources":{"hostingSite":"revou-fullstack"},"state":"ACTIVE","etag":"1_940a0d2e-d83a-45ea-9ebc-6387c0346aa1"}
+[info] i  functions: preparing codebase default for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2023-10-20T23:04:46.917Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/cloudfunctions.googleapis.com [none]
+[debug] [2023-10-20T23:04:46.917Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/revou-fullstack
+[debug] [2023-10-20T23:04:46.920Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/runtimeconfig.googleapis.com [none]
+[debug] [2023-10-20T23:04:46.920Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/runtimeconfig.googleapis.com x-goog-quota-user=projects/revou-fullstack
+[debug] [2023-10-20T23:04:46.923Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/cloudbuild.googleapis.com [none]
+[debug] [2023-10-20T23:04:46.923Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/cloudbuild.googleapis.com x-goog-quota-user=projects/revou-fullstack
+[debug] [2023-10-20T23:04:46.926Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/artifactregistry.googleapis.com [none]
+[debug] [2023-10-20T23:04:46.926Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/artifactregistry.googleapis.com x-goog-quota-user=projects/revou-fullstack
+[debug] [2023-10-20T23:04:48.326Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/cloudfunctions.googleapis.com 200
+[debug] [2023-10-20T23:04:48.326Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/cloudfunctions.googleapis.com [omitted]
+[info] +  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2023-10-20T23:04:48.335Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/cloudbuild.googleapis.com 200
+[debug] [2023-10-20T23:04:48.335Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/cloudbuild.googleapis.com [omitted]
+[info] +  functions: required API cloudbuild.googleapis.com is enabled 
+[debug] [2023-10-20T23:04:48.339Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/runtimeconfig.googleapis.com 200
+[debug] [2023-10-20T23:04:48.339Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2023-10-20T23:04:48.413Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/artifactregistry.googleapis.com 200
+[debug] [2023-10-20T23:04:48.413Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/artifactregistry.googleapis.com [omitted]
+[info] +  artifactregistry: required API artifactregistry.googleapis.com is enabled 
+[debug] [2023-10-20T23:04:48.414Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/revou-fullstack/adminSdkConfig [none]
+[debug] [2023-10-20T23:04:48.939Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/revou-fullstack/adminSdkConfig 200
+[debug] [2023-10-20T23:04:48.939Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/revou-fullstack/adminSdkConfig {"projectId":"revou-fullstack","storageBucket":"revou-fullstack.appspot.com"}
+[debug] [2023-10-20T23:04:48.939Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/revou-fullstack/configs [none]
+[debug] [2023-10-20T23:04:50.486Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/revou-fullstack/configs 403
+[debug] [2023-10-20T23:04:50.486Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/revou-fullstack/configs {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
+[debug] HTTP Error: 403, The caller does not have permission
+[debug] [2023-10-20T23:04:50.491Z] Validating nodejs source
+[debug] [2023-10-20T23:04:52.014Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "18"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^11.8.0",
+    "firebase-functions": "^4.3.1"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^3.1.0"
+  },
+  "private": true
+}
+[debug] [2023-10-20T23:04:52.015Z] Building nodejs source
+[info] i  functions: Loading and analyzing source code for codebase default to determine what to deploy 
+[debug] [2023-10-20T23:04:52.016Z] Could not find functions.yaml. Must use http discovery
+[debug] [2023-10-20T23:04:52.025Z] Found firebase-functions binary at 'E:\RevoUBootcamp\week-17-SherinOlivia\backend\dist\node_modules\.bin\firebase-functions'
+[info] Serving at port 8980
+
+[error] node:events:492
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::8980
+    at Server.setupListenHandle [as _listen2] (node:net:1751:16)
+    at listenInCluster (node:net:1799:12)
+    at Server.listen (node:net:1887:7)
+    at Function.listen (E:\RevoUBootcamp\week-17-SherinOlivia\backend\dist\node_modules\express\lib\application.js:635:24)
+    at Object.<anonymous> (E:\RevoUBootcamp\week-17-SherinOlivia\backend\dist\index.js:62:5)
+    at Module._compile (node:internal/modules/cjs/loader:1256:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1310:10)
+    at Module.load (node:internal/modules/cjs/loader:1119:32)
+    at Module._load (node:internal/modules/cjs/loader:960:12)
+    at Module.require (node:internal/modules/cjs/loader:1143:19)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1778:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 8980
+}
+
+Node.js v18.17.0
+
+[debug] [2023-10-20T23:04:53.019Z] Failed to call quitquitquit. This often means the server failed to start request to http://localhost:8980/__/quitquitquit failed, reason: connect ECONNREFUSED ::1:8980 {"message":"request to http://localhost:8980/__/quitquitquit failed, reason: connect ECONNREFUSED ::1:8980","type":"system","errno":"ECONNREFUSED","code":"ECONNREFUSED"}
+[debug] [2023-10-20T23:04:53.120Z] FetchError: request to http://127.0.0.1:8980/__/functions.yaml failed, reason: read ECONNRESET
+    at ClientRequest.<anonymous> (C:\Users\Sherin Olivia\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\node-fetch\lib\index.js:1501:11)
+    at ClientRequest.emit (node:events:514:28)
+    at ClientRequest.emit (node:domain:489:12)
+    at Socket.socketErrorListener (node:_http_client:501:9)
+    at Socket.emit (node:events:514:28)
+    at Socket.emit (node:domain:489:12)
+    at emitErrorNT (node:internal/streams/destroy:151:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:116:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2023-10-20T23:16:38.529Z] ----------------------------------------------------------------------
+[debug] [2023-10-20T23:16:38.531Z] Command:       D:\Program Files (x86)\nodejs\node.exe C:\Users\Sherin Olivia\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2023-10-20T23:16:38.531Z] CLI Version:   12.7.0
+[debug] [2023-10-20T23:16:38.532Z] Platform:      win32
+[debug] [2023-10-20T23:16:38.532Z] Node Version:  v18.17.0
+[debug] [2023-10-20T23:16:38.533Z] Time:          Sat Oct 21 2023 06:16:38 GMT+0700 (Western Indonesia Time)
+[debug] [2023-10-20T23:16:38.533Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-10-20T23:16:38.637Z] Field ".functions" in "firebase.json" is possibly invalid: should be object
+[debug] [2023-10-20T23:16:38.637Z] Object ".functions[0]" in "firebase.json" has unknown property: {"additionalProperty":"port"}
+[debug] [2023-10-20T23:16:38.638Z] Field ".functions" in "firebase.json" is possibly invalid: should match some schema in anyOf
+[debug] [2023-10-20T23:16:38.643Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-10-20T23:16:38.643Z] > authorizing via signed-in user (sochronicle@gmail.com)
+[debug] [2023-10-20T23:16:38.643Z] [iam] checking project revou-fullstack for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-10-20T23:16:38.646Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/revou-fullstack:testIamPermissions [none]
+[debug] [2023-10-20T23:16:38.646Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/revou-fullstack:testIamPermissions x-goog-quota-user=projects/revou-fullstack
+[debug] [2023-10-20T23:16:38.646Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/revou-fullstack:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-10-20T23:16:39.967Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/revou-fullstack:testIamPermissions 200
+[debug] [2023-10-20T23:16:39.967Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/revou-fullstack:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-10-20T23:16:39.967Z] [iam] error while checking permissions, command may fail: FirebaseError: Authorization failed. This account is missing the following required permissions on project revou-fullstack:
+
+  cloudfunctions.functions.delete
+[debug] [2023-10-20T23:16:39.968Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/revou-fullstack/serviceAccounts/revou-fullstack@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2023-10-20T23:16:39.968Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/revou-fullstack/serviceAccounts/revou-fullstack@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2023-10-20T23:16:40.406Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/revou-fullstack/serviceAccounts/revou-fullstack@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2023-10-20T23:16:40.406Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/revou-fullstack/serviceAccounts/revou-fullstack@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2023-10-20T23:16:40.409Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/revou-fullstack [none]
+[debug] [2023-10-20T23:16:40.971Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/revou-fullstack 200
+[debug] [2023-10-20T23:16:40.971Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/revou-fullstack {"projectId":"revou-fullstack","projectNumber":"17594433276","displayName":"revou-fullstack","name":"projects/revou-fullstack","resources":{"hostingSite":"revou-fullstack"},"state":"ACTIVE","etag":"1_940a0d2e-d83a-45ea-9ebc-6387c0346aa1"}
+[info] 
+[info] === Deploying to 'revou-fullstack'...
+[info] 
+[info] i  deploying functions, hosting 
+[debug] [2023-10-20T23:16:41.034Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/revou-fullstack [none]
+[debug] [2023-10-20T23:16:41.598Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/revou-fullstack 200
+[debug] [2023-10-20T23:16:41.599Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/revou-fullstack {"projectId":"revou-fullstack","projectNumber":"17594433276","displayName":"revou-fullstack","name":"projects/revou-fullstack","resources":{"hostingSite":"revou-fullstack"},"state":"ACTIVE","etag":"1_940a0d2e-d83a-45ea-9ebc-6387c0346aa1"}
+[info] i  functions: preparing codebase default for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2023-10-20T23:16:41.607Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/cloudfunctions.googleapis.com [none]
+[debug] [2023-10-20T23:16:41.607Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/revou-fullstack
+[debug] [2023-10-20T23:16:41.610Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/runtimeconfig.googleapis.com [none]
+[debug] [2023-10-20T23:16:41.610Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/runtimeconfig.googleapis.com x-goog-quota-user=projects/revou-fullstack
+[debug] [2023-10-20T23:16:41.613Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/cloudbuild.googleapis.com [none]
+[debug] [2023-10-20T23:16:41.614Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/cloudbuild.googleapis.com x-goog-quota-user=projects/revou-fullstack
+[debug] [2023-10-20T23:16:41.617Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/artifactregistry.googleapis.com [none]
+[debug] [2023-10-20T23:16:41.618Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/artifactregistry.googleapis.com x-goog-quota-user=projects/revou-fullstack
+[debug] [2023-10-20T23:16:43.094Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/runtimeconfig.googleapis.com 200
+[debug] [2023-10-20T23:16:43.095Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2023-10-20T23:16:43.114Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/artifactregistry.googleapis.com 200
+[debug] [2023-10-20T23:16:43.114Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/artifactregistry.googleapis.com [omitted]
+[info] +  artifactregistry: required API artifactregistry.googleapis.com is enabled 
+[debug] [2023-10-20T23:16:43.119Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/cloudbuild.googleapis.com 200
+[debug] [2023-10-20T23:16:43.119Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/cloudbuild.googleapis.com [omitted]
+[info] +  functions: required API cloudbuild.googleapis.com is enabled 
+[debug] [2023-10-20T23:16:43.150Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/cloudfunctions.googleapis.com 200
+[debug] [2023-10-20T23:16:43.150Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/revou-fullstack/services/cloudfunctions.googleapis.com [omitted]
+[info] +  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2023-10-20T23:16:43.153Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/revou-fullstack/adminSdkConfig [none]
+[debug] [2023-10-20T23:16:43.512Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/revou-fullstack/adminSdkConfig 200
+[debug] [2023-10-20T23:16:43.513Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/revou-fullstack/adminSdkConfig {"projectId":"revou-fullstack","storageBucket":"revou-fullstack.appspot.com"}
+[debug] [2023-10-20T23:16:43.514Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/revou-fullstack/configs [none]
+[debug] [2023-10-20T23:16:44.109Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/revou-fullstack/configs 403
+[debug] [2023-10-20T23:16:44.110Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/revou-fullstack/configs {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
+[debug] HTTP Error: 403, The caller does not have permission
+[debug] [2023-10-20T23:16:44.116Z] Validating nodejs source
+[debug] [2023-10-20T23:16:45.873Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "18"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^11.8.0",
+    "firebase-functions": "^4.3.1"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^3.1.0"
+  },
+  "private": true
+}
+[debug] [2023-10-20T23:16:45.873Z] Building nodejs source
+[info] i  functions: Loading and analyzing source code for codebase default to determine what to deploy 
+[debug] [2023-10-20T23:16:45.875Z] Could not find functions.yaml. Must use http discovery
+[debug] [2023-10-20T23:16:45.883Z] Found firebase-functions binary at 'E:\RevoUBootcamp\week-17-SherinOlivia\backend\dist\node_modules\.bin\firebase-functions'
+[info] Serving at port 8370
+
+[error] node:events:492
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::8370
+    at Server.setupListenHandle [as _listen2] (node:net:1751:16)
+    at listenInCluster (node:net:1799:12)
+    at Server.listen (node:net:1887:7)
+    at Function.listen (E:\RevoUBootcamp\week-17-SherinOlivia\backend\dist\node_modules\express\lib\application.js:635:24)
+    at Object.<anonymous> (E:\RevoUBootcamp\week-17-SherinOlivia\backend\dist\index.js:62:5)
+    at Module._compile (node:internal/modules/cjs/loader:1256:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1310:10)
+    at Module.load (node:internal/modules/cjs/loader:1119:32)
+    at Module._load (node:internal/modules/cjs/loader:960:12)
+    at Module.require (node:internal/modules/cjs/loader:1143:19)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1778:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 8370
+}
+
+Node.js v18.17.0
+
+[debug] [2023-10-20T23:16:46.832Z] Failed to call quitquitquit. This often means the server failed to start request to http://localhost:8370/__/quitquitquit failed, reason: connect ECONNREFUSED ::1:8370 {"message":"request to http://localhost:8370/__/quitquitquit failed, reason: connect ECONNREFUSED ::1:8370","type":"system","errno":"ECONNREFUSED","code":"ECONNREFUSED"}
+[debug] [2023-10-20T23:16:46.950Z] FetchError: request to http://127.0.0.1:8370/__/functions.yaml failed, reason: read ECONNRESET
+    at ClientRequest.<anonymous> (C:\Users\Sherin Olivia\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\node-fetch\lib\index.js:1501:11)
+    at ClientRequest.emit (node:events:514:28)
+    at ClientRequest.emit (node:domain:489:12)
+    at Socket.socketErrorListener (node:_http_client:501:9)
+    at Socket.emit (node:events:514:28)
+    at Socket.emit (node:domain:489:12)
+    at emitErrorNT (node:internal/streams/destroy:151:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:116:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[error] 
+[error] Error: An unexpected error has occurred.
