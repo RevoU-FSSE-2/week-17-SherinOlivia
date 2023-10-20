@@ -17,9 +17,6 @@ dependencies:
   formik:
     specifier: ^2.4.5
     version: 2.4.5(react@18.2.0)
-  js-cookie:
-    specifier: ^3.0.5
-    version: 3.0.5
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -52,9 +49,6 @@ devDependencies:
   '@types/jest':
     specifier: ^29.5.5
     version: 29.5.5
-  '@types/js-cookie':
-    specifier: ^3.0.5
-    version: 3.0.5
   '@types/react':
     specifier: ^18.2.15
     version: 18.2.15
@@ -2262,10 +2256,6 @@ packages:
       pretty-format: 29.7.0
     dev: true
 
-  /@types/js-cookie@3.0.5:
-    resolution: {integrity: sha512-dtLshqoiGRDHbHueIT9sjkd2F4tW1qPSX2xKAQK8p1e6pM+Z913GM1shv7dOqqasEMYbC5zEaClJomQe8OtQLA==}
-    dev: true
-
   /@types/jsdom@20.0.1:
     resolution: {integrity: sha512-d0r18sZPmMQr1eG35u12FZfhIXNrnsPU/g5wvRKCUf/tOGilKKwYMYGqh33BNR6ba+2gkHw1EUiHoN3mn7E5IQ==}
     dependencies:
@@ -4445,11 +4435,6 @@ packages:
       - supports-color
       - ts-node
     dev: true
-
-  /js-cookie@3.0.5:
-    resolution: {integrity: sha512-cEiJEAEoIbWfCZYKWhVwFuvPX1gETRYPw6LlaTKoxD3s2AkXzkCjnp6h0V77ozyqj0jakteJ4YqDJT830+lVGw==}
-    engines: {node: '>=14'}
-    dev: false
 
   /js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}

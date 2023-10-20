@@ -2,22 +2,15 @@ import { useNavigate, useParams } from "react-router-dom"
 import { OrderInfo, OrderFormInfo as UpdateInfo } from "../../types";
 import { OrderForm as OrderUpdateComponent } from "../../components";
 import { useCallback, useEffect, useState } from "react";
-import Cookies from 'js-cookie';
 
 const UpdateOrder = () => {
     const navigate = useNavigate()
     const [orders, setOrders] = useState<OrderInfo>()
     const apiUrl = import.meta.env.VITE_REACT_APP_BASE_UPDATE_URL;
-    const token = Cookies.get("access_token");
     const { id } = useParams()
 
     const getOrder = useCallback(
         async () => {
-
-            if(!token){
-                navigate('/login')
-                return
-              }
               
             try {
                 const fetchUpdate = await fetch(apiUrl, {
