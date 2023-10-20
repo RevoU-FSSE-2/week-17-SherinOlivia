@@ -2,7 +2,7 @@ import cors, { CorsOptions } from "cors";
 import { Application, Request } from "express";
 
 const XOrigin = [
-  "http://localhost:5173",
+  "http://localhost:5173","https://week-17-sherinolivia.web.app"
 ];
 const YOrigin = [
   "Y",
