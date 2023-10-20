@@ -1,6 +1,6 @@
 # Week 17 Assignment Overview
 
-<p align="justify">For this week's assignment, we were tasked with intregate our backend RestAPIs with our frontend UI (React). Project is built using Typescript programming language </p>
+<p align="justify">For this week's assignment, we were tasked with intregate our backend RestAPIs with our frontend UI (React), then deploy it to firebase and GCP. Project is built using Typescript programming language </p>
 
 **Project Theme: Order & Inventory Tracker**
 <br>
@@ -27,8 +27,7 @@
 
 ## Deployed link: 
 <p align="center">
-<a href="x">x</a> ||
-<a href="x">x</a>
+<a href="https://week-17-sherinolivia.web.app/">https://week-17-sherinolivia.web.app/</a>
 </p> 
 <br>
 
