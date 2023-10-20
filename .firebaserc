@@ -1,7 +1,7 @@
 {
   "projects": {
     "default": "revou-fullstack",
-    "sherin-test": "revou-fullstack"
+    "w17": "revou-fullstack"
   },
   "targets": {},
   "etags": {}

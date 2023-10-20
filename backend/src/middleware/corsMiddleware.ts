@@ -2,10 +2,10 @@ import cors, { CorsOptions } from "cors";
 import { Application, Request } from "express";
 
 const XOrigin = [
-  "http://localhost:5173","https://week-17-sherinolivia.web.app"
+  "http://localhost:5173","http://localhost:5555","https://week-17-sherinolivia.web.app"
 ];
 const YOrigin = [
-  "Y",
+  "http://localhost:5555","https://week-17-sherinolivia.firebaseapp.com/",
 ];
 
 const corsOptionsDelegate = (req: any, 
@@ -19,6 +19,7 @@ const corsOptionsDelegate = (req: any,
       methods: "GET, POST, PUT, PATCH, DELETE",
       credentials: true,
     });
+    
   } else if (clientYOrigin) {
     callback(null, {
       origin: true,
@@ -27,6 +28,7 @@ const corsOptionsDelegate = (req: any,
     });
   } else {
     callback(new Error("CORS Unauthorized Access..!"));
+    console.error("Error..:", Error)
   }
 };
 

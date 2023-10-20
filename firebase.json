@@ -2,7 +2,6 @@
   "functions": [
     {
       "source": "backend/dist",
-      "entryPoint": "week_17_sherinolivia",
       "codebase": "default",
       "ignore": [
         "node_modules",
@@ -10,12 +9,11 @@
         "firebase-debug.log",
         "firebase-debug.*.log"
       ],
-      "runtime": "nodejs16"
+      "runtime": "nodejs18"
     }
   ],
   "hosting": {
-    "site": "week-17-sherinolivia",
-    "public": "frontend", 
+    "public": "frontend/dist",
     "ignore": [
       "firebase.json",
       "**/.*",

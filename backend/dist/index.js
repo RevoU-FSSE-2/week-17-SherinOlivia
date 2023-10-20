@@ -59,7 +59,7 @@ dbConnection_1.DBLocal.connect(function () {
 (0, adminConfig_1.default)();
 // router
 app.use(mainRouter_1.default);
-exports.week_17_sherinolivia = functions.https.onRequest(app);
 app.listen(port, () => {
     console.log(`Server is running on port:${port}`);
 });
+exports.week_17_sherinolivia = functions.https.onRequest(app);
