@@ -1,0 +1,25 @@
+{
+  "functions": [
+    {
+      "source": "backend/dist",
+      "entryPoint": "week_17_sherinolivia",
+      "codebase": "default",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log"
+      ],
+      "runtime": "nodejs18"
+    }
+  ],
+  "hosting": {
+    "site": "week-17-sherinolivia",
+    "public": "frontend", 
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

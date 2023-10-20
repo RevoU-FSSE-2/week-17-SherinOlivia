@@ -4,6 +4,7 @@ import { DBLocal } from './config/dbConnection';
 import insertAdmin from './config/adminConfig';
 import router from './router/mainRouter';
 import appMiddleware from './middleware';
+import * as functions from 'firebase-functions';
 
 const app: Express = express()
 const port = process.env.PORT;
@@ -35,6 +36,7 @@ insertAdmin();
 // router
 app.use(router)
 
+export const week_17_sherinolivia = functions.https.onRequest(app)
 
 app.listen(port, () => {
   console.log(`Server is running on port:${port}`)
