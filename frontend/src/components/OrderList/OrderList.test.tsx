@@ -2,10 +2,10 @@ import { render, screen } from '@testing-library/react';
 // import { BrowserRouter } from 'react-router-dom';
 import '../../../matchMedia';
 import { ColumnsType } from 'antd/es/table';
-import { CategoryInfo } from '../../types';
-import CategoryList from '.';
+import { OrderInfo } from '../../types';
+import OrderList from '.';
 
-const columns: ColumnsType<CategoryInfo> = [
+const columns: ColumnsType<OrderInfo> = [
     {
       title: 'ID',
       dataIndex: 'id',
@@ -26,28 +26,28 @@ const columns: ColumnsType<CategoryInfo> = [
     },
   ];
 
-describe('Test List of Category Component', () => {
+describe('Test List of Order Component', () => {
 
     // it('ID Column Title Renders Correctly',async () => {
-    //     render(<CategoryList columns={columns} data={[]} />)
+    //     render(<OrderList columns={columns} data={[]} />)
     //     const title = screen.getByText('ID')
     //     expect(title).toBeDefined()     
     // })
 
     // it('Name Column Title Renders Correctly',async () => {
-    //     render(<CategoryList columns={columns} data={[]} />)
+    //     render(<OrderList columns={columns} data={[]} />)
     //     const title = screen.getByText('Name')
     //     expect(title).toBeDefined()     
     // })
 
     // it('Status Column Title Renders Correctly',async () => {
-    //     render(<CategoryList columns={columns} data={[]} />)
+    //     render(<OrderList columns={columns} data={[]} />)
     //     const title = screen.getByText('Status')
     //     expect(title).toBeDefined()     
     // })
 
     it('Testing Header Column', () => {
-        render(<CategoryList columns={columns} data={[]} />)
+        render(<OrderList columns={columns} data={[]} />)
 
         columns.map((column) => {
             if(column.title) {
@@ -58,4 +58,4 @@ describe('Test List of Category Component', () => {
     });
 })
 
-// pnpm run test 'src/components/CategoryList/CategoryList.test.tsx'
+// pnpm run test 'src/components/OrderList/OrderList.test.tsx'

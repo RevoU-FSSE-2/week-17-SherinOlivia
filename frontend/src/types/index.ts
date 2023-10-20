@@ -9,16 +9,16 @@ export interface LoginInfo {
     email: string;
     password: string;
 }
-export interface CategoryInfo {
+export interface OrderInfo {
     id: string;
     name: string;
     is_active: boolean;
 }
 
-export type CategoryFormInfo = Omit<CategoryInfo, 'id'>
+export type OrderFormInfo = Omit<OrderInfo, 'id'>
 
-export interface GetCategoryResponse {
-    categories: CategoryInfo[];
+export interface GetOrderResponse {
+    categories: OrderInfo[];
     total: number;
     skip: number;
     limit: number;

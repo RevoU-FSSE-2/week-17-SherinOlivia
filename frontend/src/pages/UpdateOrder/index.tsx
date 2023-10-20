@@ -1,30 +1,35 @@
 import { useNavigate, useParams } from "react-router-dom"
-import { CategoryInfo, CategoryFormInfo as UpdateInfo } from "../../types";
-import { CategoryForm as CategoryUpdateComponent } from "../../components";
+import { OrderInfo, OrderFormInfo as UpdateInfo } from "../../types";
+import { OrderForm as OrderUpdateComponent } from "../../components";
 import { useCallback, useEffect, useState } from "react";
+import Cookies from 'js-cookie';
 
-
-const UpdateCategory = () => {
+const UpdateOrder = () => {
     const navigate = useNavigate()
-    const [categories, setCategories] = useState<CategoryInfo>()
-    const apiUrl = import.meta.env.VITE_REACT_APP_BASE_CATEGORY_URL;
-    const token = localStorage.getItem('authToken')
+    const [orders, setOrders] = useState<OrderInfo>()
+    const apiUrl = import.meta.env.VITE_REACT_APP_BASE_UPDATE_URL;
+    const token = Cookies.get("access_token");
     const { id } = useParams()
 
-    const getCategory = useCallback(
+    const getOrder = useCallback(
         async () => {
+
+            if(!token){
+                navigate('/login')
+                return
+              }
+              
             try {
-                const fetchUpdate = await fetch(`${apiUrl}`, {
+                const fetchUpdate = await fetch(apiUrl, {
                     headers: {
                         'Content-Type': 'application/json',
-                        Authorization: `Bearer ${token}`
                     },
 
                 });
                 if (fetchUpdate.ok) {
 
-                    const response: CategoryInfo = await fetchUpdate.json()
-                    setCategories(response)
+                    const response: OrderInfo = await fetchUpdate.json()
+                    setOrders(response)
                     
                 } else {
 
@@ -38,8 +43,8 @@ const UpdateCategory = () => {
 
     useEffect(
         () => {
-            getCategory()
-        },[getCategory]
+            getOrder()
+        },[getOrder]
     )
 
     const handleUpdate = async (values: UpdateInfo) => {
@@ -48,8 +53,7 @@ const UpdateCategory = () => {
             const response = await fetch (`${apiUrl}update`, {
                 method: 'PUT',
                 headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ ...values, id:id })
             })
@@ -58,21 +62,21 @@ const UpdateCategory = () => {
                 console.log("successs")
                 navigate('/');  
             } else {
-                console.log("Failed to edit category")
+                console.log("Failed to edit Order")
                 return
             }
    
         } catch (error) {
             console.error(error)
-            alert("Failed to Edit Category...!")
+            alert("Failed to Edit Order...!")
         }  
       }
 
-    if(categories) {
-        return <CategoryUpdateComponent onSubmit={handleUpdate} content={"Edit Category"} />
+    if(orders) {
+        return <OrderUpdateComponent onSubmit={handleUpdate} content={"Edit Order"} />
   
 }
     return null 
 }
 
-export default UpdateCategory
+export default UpdateOrder

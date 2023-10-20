@@ -1,14 +1,14 @@
 import { Button, Card, Col, Select, Row, Input, Form as AntForm } from 'antd';
-import styles from './CategoryForm.module.css'
+import styles from './OrderForm.module.css'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup'
 import { TextLevel } from "../../components";
-import { CategoryInfo, CategoryFormInfo } from "../../types";
+import { OrderInfo, OrderFormInfo } from "../../types";
 import { Link } from 'react-router-dom';
 
 interface Props {
-    onSubmit: (values: CategoryFormInfo) => void;
-    category?: CategoryInfo
+    onSubmit: (values: OrderFormInfo) => void;
+    order?: OrderInfo
     content: string;
 }
 const initialValues = {
@@ -21,8 +21,8 @@ const validationSchema = Yup.object().shape({
     is_active: Yup.boolean().oneOf([true, false], 'Please Select the Status').required('Please Select the Status!')
 })
 
-const CategoryForm = ({onSubmit, category, content}: Props) => {
-    const handleCategory = async (values: CategoryFormInfo) => {
+const OrderForm = ({onSubmit, order, content}: Props) => {
+    const handleOrder = async (values: OrderFormInfo) => {
         onSubmit(values)
     }
     
@@ -32,9 +32,9 @@ const CategoryForm = ({onSubmit, category, content}: Props) => {
         <Col span={8}>
             <Card className={styles.card}>
                 <Formik 
-                initialValues={category ?? initialValues}
+                initialValues={order ?? initialValues}
                 validationSchema={validationSchema}
-                onSubmit={handleCategory}>
+                onSubmit={handleOrder}>
                     {(formikProps) => (
                     <Form name="basic" autoComplete="off" >
                         <div className={styles.middle}>
@@ -89,4 +89,4 @@ const CategoryForm = ({onSubmit, category, content}: Props) => {
       
 }
 
-export default CategoryForm
+export default OrderForm

@@ -2,85 +2,84 @@ import { useCallback, useEffect, useState } from 'react';
 import { Button } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { useNavigate } from 'react-router-dom';
-import { TextLevel, CategoryList as CategoryListComponent } from '../../components'
-import styles from './CategoryList.module.css'
+import { TextLevel, OrderList as OrderListComponent } from '../../components'
+import styles from './OrderList.module.css'
+// import Cookies from 'js-cookie';
 
-export interface CategoryInfo {
+export interface OrderInfo {
   id: string;
   name: string;
   is_active: boolean;
 }
 
-const CategoryList: React.FC = () => {
-  const [categories, setCategories] = useState<CategoryInfo[]>([]);
+const OrderList: React.FC = () => {
+  const [orders, setOrders] = useState<OrderInfo[]>([]);
   const navigate = useNavigate();
-  const token = localStorage.getItem('authToken');
+  const apiUrl = import.meta.env.VITE_REACT_APP_ORDERS_URL
+  // const token = Cookies.get("access_token");
 
 const handleLogOut = () => {
-  localStorage.removeItem('authToken')
+  // Cookies.remove("access_token")
   navigate('/login');
 } 
 
-const getCategory = useCallback(
+const getOrder = useCallback(
    async () => {
 
-  if(!token){
-    navigate('/login')
-    return
-  }
+  // if(!token){
+  //   console.log(token)
+  //   navigate('/login')
+  //   return
+  // }
 
-  console.log("Auth Token:", token);
+  // console.log("Auth Token:", token);
   try {
-    const response = await fetch('https://mock-api.arikmpt.com/api/category/', {
-      headers: {
-        Authorization: `Bearer ${token}`
-      },
+    const response = await fetch(apiUrl, {
+      method: 'GET',
+      credentials: 'include',
     });
     const data = await response.json();
     console.log(data)
     
     if (data && data.data) {
-      const datas = data.data.map((category: { id: string; }) => ({
-        ...category,
-        key: category.id
+      const datas = data.data.map((order: { id: string; }) => ({
+        ...order,
+        key: order.id
       }));
-      setCategories(datas);
+      setOrders(datas);
     } else {
-      setCategories([]);
+      setOrders([]);
     }
   } catch (error) {
     console.error("ERROR:", error);
-    alert("Failed to fetch Categories!");
+    alert("Failed to fetch Orders!");
   }
 },[navigate]);
 
 useEffect(() => {
-  getCategory()
-}, [getCategory])
+  getOrder()
+}, [getOrder])
 
   // remove/delete item
-  const removeCategory = async (id: string) => {
+  const removeOrder = async (id: string) => {
     try {
-        const response = await fetch(`https://mock-api.arikmpt.com/api/category/${id}`, {
+        const response = await fetch(apiUrl, {
           method: 'DELETE',
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('authToken')}`
-          }
         })
   
         if(response) {
-          setCategories((prevCategories) =>
-          prevCategories.filter((category) => category.id !== id)
+          setOrders((prevOrders) =>
+          prevOrders.filter((order) => order.id !== id)
         );
           navigate(0)
-          console.log('Successfully Removed category');
+          console.log('Successfully Removed Order');
         }
     } catch (error) {
         console.error(error)
     }
   }
   
-  const columns: ColumnsType<CategoryInfo> = [
+  const columns: ColumnsType<OrderInfo> = [
     {
       title: 'ID',
       dataIndex: 'id',
@@ -105,7 +104,7 @@ useEffect(() => {
       render: (_, record) => (
         <>
           <Button type='primary' onClick={() => navigate(`/edit/${record.id}`)} className={styles.actionButton}>Edit</Button>
-          <Button type='primary' onClick={() => removeCategory(record.id)} htmlType="button" danger>Delete</Button>
+          <Button type='primary' onClick={() => removeOrder(record.id)} htmlType="button" danger>Delete</Button>
         </>
       ),
     },
@@ -114,24 +113,24 @@ useEffect(() => {
 
   return (
     <>
-    <div className={styles.categoryList}>
-      <div className={styles.categoryTitle}>
+    <div className={styles.orderList}>
+      <div className={styles.orderTitle}>
         <span><Button type={'primary'} onClick={() => navigate('/add')}>Create New</Button></span>
 
-        <TextLevel level={1} title={"List of Category"} />
+        <TextLevel level={1} title={"List of Order"} />
 
         <div>
           <Button type={'primary'} onClick={() => navigate('/profile')} className={styles.userButton}>Profile</Button>
           <Button type={'primary'} onClick={handleLogOut} className={styles.logout} danger>Log Out</Button>
         </div>
       </div>
-      <CategoryListComponent
+      <OrderListComponent
       columns={columns} 
-      data={categories || []}
+      data={orders || []}
       />
     </div>
     </>
   )
 }
 
-export default CategoryList;
+export default OrderList;

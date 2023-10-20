@@ -1,18 +1,18 @@
 import { Table } from "antd"
 import { ColumnsType } from "antd/es/table";
 
-interface CategoryInfo {
+interface OrderInfo {
     id: string;
     name: string;
     is_active: boolean;
   }
 
 interface Props {
-    data: CategoryInfo[];
-    columns: ColumnsType<CategoryInfo>;
+    data: OrderInfo[];
+    columns: ColumnsType<OrderInfo>;
   }
 
-const CategoryList = ({ data, columns} : Props) => {
+const OrderList = ({ data, columns} : Props) => {
   const pagination = {
     pageSize: 5,
   }
@@ -27,4 +27,4 @@ const CategoryList = ({ data, columns} : Props) => {
     )
 }
 
-export default CategoryList
+export default OrderList

@@ -1,21 +1,18 @@
 import { useNavigate } from "react-router-dom"
-import {  CategoryFormInfo as CreateInfo } from "../../types";
-import { CategoryForm as CreateNewComponent } from "../../components";
+import {  OrderFormInfo as CreateInfo } from "../../types";
+import { OrderForm as CreateNewComponent } from "../../components";
 
 
 const CreateNew = () => {
     const navigate = useNavigate()
 
     const handleCreate = async (values: CreateInfo) => {
-        const apiUrl = import.meta.env.VITE_REACT_APP_BASE_CATEGORY_URL;
+        const apiUrl = import.meta.env.VITE_REACT_APP_BASE_CREATE_URL;
       
         try {
             const response = await fetch (`${apiUrl}create`, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${localStorage.getItem('authToken')}`
-                },
+                credentials: 'include',
                 body: JSON.stringify(values)
             })
             if (response.ok) {

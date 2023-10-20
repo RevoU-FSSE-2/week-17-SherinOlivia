@@ -1,6 +1,7 @@
 import { ReactNode, createContext, useState } from "react";
 
 interface Profile {
+    username: string;
     name: string;
     email: string;
 }

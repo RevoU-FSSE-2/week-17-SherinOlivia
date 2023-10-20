@@ -1,10 +1,10 @@
-.categoryList {
+.orderList {
     min-width: 90vw;
     min-height: 50vh;
     padding: 5vh 5vw;
 }
 
-.categoryTitle {
+.orderTitle {
     display: flex;
     justify-content: space-between;
     align-items: center;

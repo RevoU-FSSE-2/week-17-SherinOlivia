@@ -17,11 +17,13 @@ const corsOptionsDelegate = (req: any,
     callback(null, {
       origin: true,
       methods: "GET, POST, PUT, PATCH, DELETE",
+      credentials: true,
     });
   } else if (clientYOrigin) {
     callback(null, {
       origin: true,
       methods: "GET, POST",
+      credentials: true,
     });
   } else {
     callback(new Error("CORS Unauthorized Access..!"));

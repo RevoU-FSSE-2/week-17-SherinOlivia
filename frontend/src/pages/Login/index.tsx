@@ -15,6 +15,7 @@ const Login = () => {
             headers: {
                 'Content-Type': 'application/json'
             },
+            credentials: 'include',
             body: JSON.stringify(values)
         })
         console.log(response)
@@ -28,7 +29,7 @@ const Login = () => {
         } else {
             alert(data.errors)
         }
-        
+
     } catch (error) {
         console.error(error)
         alert("Login Failedddd...!")
