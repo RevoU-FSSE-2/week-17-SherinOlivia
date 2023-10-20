@@ -4,35 +4,25 @@ import type { ColumnsType } from 'antd/es/table';
 import { useNavigate } from 'react-router-dom';
 import { TextLevel, OrderList as OrderListComponent } from '../../components'
 import styles from './OrderList.module.css'
-// import Cookies from 'js-cookie';
-
 export interface OrderInfo {
   id: string;
-  name: string;
-  is_active: boolean;
+  product: string;
+  qty: number;
+  status: string;
 }
 
 const OrderList: React.FC = () => {
   const [orders, setOrders] = useState<OrderInfo[]>([]);
   const navigate = useNavigate();
   const apiUrl = import.meta.env.VITE_REACT_APP_ORDERS_URL
-  // const token = Cookies.get("access_token");
 
 const handleLogOut = () => {
-  // Cookies.remove("access_token")
   navigate('/login');
 } 
 
 const getOrder = useCallback(
    async () => {
 
-  // if(!token){
-  //   console.log(token)
-  //   navigate('/login')
-  //   return
-  // }
-
-  // console.log("Auth Token:", token);
   try {
     const response = await fetch(apiUrl, {
       method: 'GET',
@@ -87,16 +77,30 @@ useEffect(() => {
       render: (text) => text || 'N/A',  // Render 'N/A' if 'id' is falsy or undefined
     },
     {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-      render: (text) => text || 'N/A',  // Render 'N/A' if 'name' is falsy or undefined
+      title: 'Product',
+      dataIndex: 'product',
+      key: 'product',
+      render: (text) => text || 'N/A',  // Render 'N/A' if 'product' is falsy or undefined
+    },
+    {
+      title: 'Qty',
+      dataIndex: 'qty',
+      key: 'qty',
+      render: (number) => number || 'N/A',  // Render 'N/A' if 'product' is falsy or undefined
     },
     {
       title: 'Status',
-      dataIndex: 'is_active',
-      key: 'is_active',
-      render: (_, record) => (record.is_active ? 'Active' : 'Deactive')
+      dataIndex: 'status',
+      key: 'status',
+      render: (_, record) => {
+        if (record.status === 'Completed') {
+          return 'Completed';
+        } else if (record.status === 'Cancelled') {
+          return 'Cancelled';
+        } else {
+          return 'Pending';
+        }
+      },
     },
     {
       title: 'Action',

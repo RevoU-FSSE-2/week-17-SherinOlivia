@@ -3,8 +3,9 @@ import { ColumnsType } from "antd/es/table";
 
 interface OrderInfo {
     id: string;
-    name: string;
-    is_active: boolean;
+    product: string;
+    qty: number;
+    status: string;
   }
 
 interface Props {

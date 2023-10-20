@@ -11,15 +11,19 @@ interface Props {
     order?: OrderInfo
     content: string;
 }
-const initialValues = {
-    name: '',
-    is_active: false
-}
 
-const validationSchema = Yup.object().shape({
-    name: Yup.string().required('Please Enter the Name'),
-    is_active: Yup.boolean().oneOf([true, false], 'Please Select the Status').required('Please Select the Status!')
-})
+const initialValues = {
+    product: "",
+    qty: 1,
+    status: "Pending", 
+  };
+  
+  const validationSchema = Yup.object().shape({
+    product: Yup.string().required('Please Enter the product'),
+    qty: Yup.number().required('Please Enter the quantity'),
+    status: Yup.string().required('Please Select the Status!'),
+  });
+  
 
 const OrderForm = ({onSubmit, order, content}: Props) => {
     const handleOrder = async (values: OrderFormInfo) => {
@@ -54,19 +58,20 @@ const OrderForm = ({onSubmit, order, content}: Props) => {
 
                         </AntForm.Item>
 
-                        <AntForm.Item label="Status" name="is_active">
+                        <AntForm.Item label="Status" name="status">
                             <div>
                                 <Select placeholder="Select Status" onChange={(value) => {
-                                formikProps.setFieldValue("is_active", value);
+                                formikProps.setFieldValue("status", value);
                                 }} 
-                                value={formikProps.values.is_active || undefined}
+                                value={formikProps.values.status || undefined}
                                 >
-                                <Select.Option value="true">Active</Select.Option>
-                                <Select.Option value="false">Deactive</Select.Option>
+                                    <Select.Option value="Pending">Pending</Select.Option>
+                                    <Select.Option value="Completed">Completed</Select.Option>
+                                    <Select.Option value="Cancelled">Cancelled</Select.Option>
                                 </Select>
                                 
                                 <div className={styles.error}>
-                                    <ErrorMessage name="is_active" />
+                                    <ErrorMessage name="status" />
                                 </div>
                             </div>
                         </AntForm.Item>

@@ -6,12 +6,12 @@ import '../../../matchMedia';
 import Profile from '.';
 
 const mockResponse = {
-  name: 'testname',
+  username: 'testname',
   email: 'test@gmail.com',
 };
 
 globalThis.fetch = jest.fn().mockResolvedValue({
-  json: async () =>  ({ data: {  name: 'testname', email: 'test@gmail.com', token: 'mockToken' }}),
+  json: async () =>  ({ data: {  username: 'testusername', email: 'test@gmail.com', token: 'mockToken' }}),
 });
 
 describe('Testing Profile Page', () => {

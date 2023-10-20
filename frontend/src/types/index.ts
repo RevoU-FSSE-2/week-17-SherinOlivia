@@ -11,8 +11,9 @@ export interface LoginInfo {
 }
 export interface OrderInfo {
     id: string;
-    name: string;
-    is_active: boolean;
+    product: string;
+    qty: number;
+    status: string;
 }
 
 export type OrderFormInfo = Omit<OrderInfo, 'id'>

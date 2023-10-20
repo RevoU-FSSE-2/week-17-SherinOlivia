@@ -31,7 +31,7 @@ const CreateNew = () => {
       }
 
     return (
-        <CreateNewComponent onSubmit={handleCreate} content={"Create New Category"} />
+        <CreateNewComponent onSubmit={handleCreate} content={"Create New Order"} />
     )    
 }
 
