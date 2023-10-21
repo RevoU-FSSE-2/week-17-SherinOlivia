@@ -28,14 +28,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.week_17_sherinolivia = void 0;
 const express_1 = __importDefault(require("express"));
-require("dotenv/config");
+// import 'dotenv/config';
 const dbConnection_1 = require("./config/dbConnection");
 const adminConfig_1 = __importDefault(require("./config/adminConfig"));
 const mainRouter_1 = __importDefault(require("./router/mainRouter"));
 const middleware_1 = __importDefault(require("./middleware"));
 const functions = __importStar(require("firebase-functions"));
+const http_1 = __importDefault(require("http"));
 const app = (0, express_1.default)();
-const port = process.env.PORT;
+const server = http_1.default.createServer(app);
+let port;
 // middleware
 (0, middleware_1.default)(app);
 // DB Connection (Railway)
@@ -59,7 +61,14 @@ dbConnection_1.DB.connect(function () {
     (0, adminConfig_1.default)();
 // router
 app.use(mainRouter_1.default);
-app.listen(port, () => {
-    console.log(`Server is running on port:${port}`);
+server.listen(0, () => {
+    const address = server.address();
+    if (address && typeof address !== 'string') {
+        port = address.port;
+        console.log(`Server is running on port:${port}`);
+    }
+    else {
+        console.error("Server address is not available.");
+    }
 });
 exports.week_17_sherinolivia = functions.https.onRequest(app);

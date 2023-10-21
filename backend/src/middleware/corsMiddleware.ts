@@ -2,10 +2,10 @@ import cors, { CorsOptions } from "cors";
 import { Application, Request } from "express";
 
 const XOrigin = [
-  "http://localhost:5173","http://localhost:5555","https://week-17-sherinolivia.web.app"
+  "http://localhost:5173","https://week-17-sherinolivia.web.app"
 ];
 const YOrigin = [
-  "http://localhost:5555","https://week-17-sherinolivia.firebaseapp.com/",
+  "https://week-17-sherinolivia.firebaseapp.com"
 ];
 
 const corsOptionsDelegate = (req: any, 
@@ -13,22 +13,26 @@ const corsOptionsDelegate = (req: any,
   const clientXOrigin = XOrigin.includes(req.header("Origin"));
   const clientYOrigin = YOrigin.includes(req.header("Origin"));
 
-  if (clientXOrigin) {
-    callback(null, {
-      origin: true,
-      methods: "GET, POST, PUT, PATCH, DELETE",
-      credentials: true,
-    });
+  try {
     
-  } else if (clientYOrigin) {
-    callback(null, {
-      origin: true,
-      methods: "GET, POST",
-      credentials: true,
-    });
-  } else {
-    callback(new Error("CORS Unauthorized Access..!"));
-    console.error("Error..:", Error)
+    if (clientXOrigin) {
+      callback(null, {
+        origin: true,
+        methods: "GET, POST, PUT, PATCH, DELETE",
+        credentials: true,
+      });
+      
+    } else if (clientYOrigin) {
+      callback(null, {
+        origin: true,
+        methods: "GET, POST",
+        credentials: true,
+      });
+    } else {
+      callback(new Error("CORS Unauthorized Access..!"))
+    }
+  } catch (error) {
+    console.error("Error..:", error)
   }
 };
 

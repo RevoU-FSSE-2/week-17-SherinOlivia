@@ -1,12 +1,12 @@
 
 // railway
 export const DBConfig = {
-    URL: process.env.SQL_URL,
-    HOST: process.env.SQL_HOST,
-    USER: process.env.SQL_USERNAME,
-    PASSWORD: process.env.SQL_PASSWORD,
-    DATABASE: process.env.SQL_DATABASE,
-    PORT: process.env.SQL_PORT
+    URL: process.env.SQL_URL || "mysql://root:NrFLilwZNHuFhD4lTWen@containers-us-west-48.railway.app:5612/railway",
+    HOST: process.env.SQL_HOST || "containers-us-west-48.railway.app",
+    USER: process.env.SQL_USERNAME || "root",
+    PASSWORD: process.env.SQL_PASSWORD || "NrFLilwZNHuFhD4lTWen",
+    DATABASE: process.env.SQL_DATABASE || "railway",
+    PORT: process.env.SQL_PORT || 5612
 }
 
 

@@ -1,13 +1,15 @@
 import express, {Express} from 'express';
-import 'dotenv/config';
+// import 'dotenv/config';
 import { DB } from './config/dbConnection';
 import insertAdmin from './config/adminConfig';
 import router from './router/mainRouter';
 import appMiddleware from './middleware';
 import * as functions from 'firebase-functions';
+import http, { Server } from 'http'
 
 const app: Express = express()
-const port = process.env.PORT;
+const server: Server = http.createServer(app)
+let port: number;
 
 // middleware
 appMiddleware(app)
@@ -37,8 +39,14 @@ insertAdmin();
 app.use(router)
 
 
-app.listen(port, () => {
-    console.log(`Server is running on port:${port}`)
+server.listen(0, () => {
+    const address = server.address();
+    if(address && typeof address !== 'string'){
+        port = address.port;
+        console.log(`Server is running on port:${port}`)
+    } else {
+        console.error("Server address is not available.")
+    }
 })
 
 export const week_17_sherinolivia = functions.https.onRequest(app)

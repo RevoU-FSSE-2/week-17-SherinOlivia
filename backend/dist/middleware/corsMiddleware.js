@@ -5,10 +5,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const cors_1 = __importDefault(require("cors"));
 const XOrigin = [
-    "http://localhost:5173", "http://localhost:5555", "https://week-17-sherinolivia.web.app"
+    "http://localhost:5173", "http://localhost:5555", "https://week-17-sherinolivia.web.app", "https://week-17-sherinolivia.firebaseapp.com"
 ];
 const YOrigin = [
-    "http://localhost:5555", "https://week-17-sherinolivia.firebaseapp.com/",
+    "http://localhost:5555", "https://week-17-sherinolivia.firebaseapp.com",
 ];
 const corsOptionsDelegate = (req, callback) => {
     const clientXOrigin = XOrigin.includes(req.header("Origin"));
