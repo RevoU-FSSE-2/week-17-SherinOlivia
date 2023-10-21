@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
-import 'dotenv/config'
+// import 'dotenv/config'
 import { DB } from './dbConnection';
 
 const insertAdmin = async (req?: Request, res?: Response) => {

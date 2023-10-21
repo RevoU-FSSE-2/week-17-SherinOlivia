@@ -1,6 +1,6 @@
-import mysql from 'mysql2'
+import * as mysql from 'mysql2'
 import { DBConfig } from './dbConfig'
-import 'dotenv/config'
+// import 'dotenv/config'
 
 // railway
 export const DB = mysql.createConnection({
