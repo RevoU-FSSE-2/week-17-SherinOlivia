@@ -1,4 +1,5 @@
-import * as mysql from 'mysql2'
+// import * as mysql from 'mysql2'
+const mysql = require("mysql2")
 import { DBConfig } from './dbConfig'
 // import 'dotenv/config'
 
