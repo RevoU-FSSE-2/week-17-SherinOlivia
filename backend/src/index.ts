@@ -5,8 +5,6 @@ import insertAdmin from './config/adminConfig';
 import router from './router/mainRouter';
 import appMiddleware from './middleware';
 import * as functions from 'firebase-functions';
-import {onRequest} from "firebase-functions/v2/https";
-import * as logger from "firebase-functions/logger";
 
 const app: Express = express()
 const port = process.env.PORT;

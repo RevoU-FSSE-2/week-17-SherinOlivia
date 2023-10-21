@@ -13,6 +13,7 @@
     }
   ],
   "hosting": {
+    "site": "week-17-sherinolivia",
     "public": "frontend/dist",
     "ignore": [
       "firebase.json",
