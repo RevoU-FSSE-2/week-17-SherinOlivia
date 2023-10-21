@@ -14,7 +14,7 @@ export interface OrderInfo {
 const OrderList: React.FC = () => {
   const [orders, setOrders] = useState<OrderInfo[]>([]);
   const navigate = useNavigate();
-  const apiUrl = import.meta.env.VITE_REACT_APP_ORDERS_URL
+  const apiUrl = "https://week-17-sherinolivia.up.railway.app/api/orders"
 
 const handleLogOut = () => {
   navigate('/login');

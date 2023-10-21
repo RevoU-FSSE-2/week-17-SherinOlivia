@@ -4,8 +4,8 @@ import { Login as LoginForm } from '../../components';
 
 const Login = () => {
   const navigate = useNavigate()
-  const apiUrl = import.meta.env.VITE_REACT_APP_LOGIN_URL
-
+  const apiUrl = "https://week-17-sherinolivia.up.railway.app/api/users/login"
+  
   const handleLogin = async (values: LoginInfo) => {
 
     console.log(`Successfully logged in`, values)

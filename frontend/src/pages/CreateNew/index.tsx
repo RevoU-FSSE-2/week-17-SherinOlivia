@@ -7,10 +7,10 @@ const CreateNew = () => {
     const navigate = useNavigate()
 
     const handleCreate = async (values: CreateInfo) => {
-        const apiUrl = import.meta.env.VITE_REACT_APP_BASE_CREATE_URL;
+        const apiUrl = "https://week-17-sherinolivia.up.railway.app/api/orders/new"
       
         try {
-            const response = await fetch (`${apiUrl}create`, {
+            const response = await fetch (apiUrl, {
                 method: 'POST',
                 credentials: 'include',
                 body: JSON.stringify(values)

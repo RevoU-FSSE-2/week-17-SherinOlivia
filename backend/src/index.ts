@@ -6,6 +6,7 @@ import router from './router/mainRouter';
 import appMiddleware from './middleware';
 import * as functions from 'firebase-functions';
 import http, { Server } from 'http'
+import mysql from 'mysql2'
 
 const app: Express = express()
 const server: Server = http.createServer(app)
