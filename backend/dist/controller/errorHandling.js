@@ -1,4 +1,6 @@
 "use strict";
+// import { DB } from '../config/dbConnection';
+// import { QueryError } from 'mysql2';
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.errorHandling = void 0;
 // Error Handling

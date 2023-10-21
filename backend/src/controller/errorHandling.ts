@@ -1,5 +1,5 @@
-import { DBLocal } from '../config/dbConnection';
-import { QueryError } from 'mysql2';
+// import { DB } from '../config/dbConnection';
+// import { QueryError } from 'mysql2';
 
 // Error Handling
 export const errorHandling = function (data: any, error: any) {
