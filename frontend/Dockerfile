@@ -10,7 +10,7 @@ WORKDIR /app
 COPY  package*.json ./
 
 # install project dependencies
-RUN pnpm install
+RUN npm install
 
 # Copy the Source Code into the container
 COPY  . .

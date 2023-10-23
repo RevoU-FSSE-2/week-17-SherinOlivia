@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 
 # Use the official Node.js img as the base image
 FROM node:18
@@ -10,7 +10,7 @@ WORKDIR /app
 COPY  package*.json ./
 
 # install Node.js app dependencies
-RUN pnpm install
+RUN npm install
 
 # Copy the Node.js Source Code into the container
 COPY  . .
