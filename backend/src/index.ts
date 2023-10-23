@@ -4,7 +4,7 @@ import { DB } from './config/dbConnection';
 import insertAdmin from './config/adminConfig';
 import router from './router/mainRouter';
 import appMiddleware from './middleware';
-import * as functions from 'firebase-functions';
+// import * as functions from 'firebase-functions';
 import http, { Server } from 'http'
 
 const app: Express = express()
@@ -49,4 +49,4 @@ server.listen(0, () => {
     }
 })
 
-export const week_17_sherinolivia = functions.https.onRequest(app)
+// export const week_17_sherinolivia = functions.https.onRequest(app)
