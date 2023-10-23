@@ -42,7 +42,7 @@ app.use(router)
 server.listen(0, () => {
     const address = server.address();
     if(address && typeof address !== 'string'){
-        port = address.port;
+        port = address.port || 5555;
         console.log(`Server is running on port:${port}`)
     } else {
         console.error("Server address is not available.")
