@@ -8,4 +8,9 @@ dotenv.config()
 export default defineConfig({
   plugins: [react()],
   base: './',
+  build: {
+    rollupOptions: {
+      input: 'src/main.js', 
+    },
+  }
 })

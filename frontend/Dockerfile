@@ -1,7 +1,14 @@
 # Use the official Node.js img as the base image
 FROM node:18
 
-ENV
+# Specify multiple environment variables
+ENV VITE_REACT_APP_BASE_URL=https://week-17-sherinolivia.up.railway.app/api
+ENV VITE_REACT_APP_LOGIN_URL=https://week-17-sherinolivia.up.railway.app/api/users/login
+ENV VITE_REACT_APP_REGISTER_URL=https://week-17-sherinolivia.up.railway.app/api/users/register
+ENV VITE_REACT_APP_ORDERS_URL=https://week-17-sherinolivia.up.railway.app/api/orders
+ENV VITE_REACT_APP_BASE_CREATE_URL=https://week-17-sherinolivia.up.railway.app/api/orders/new
+ENV VITE_REACT_APP_UPDATE_URL=https://week-17-sherinolivia.up.railway.app/api/orders/update/:orderId
+
 
 # Set Working Directory inside the container
 WORKDIR /app
