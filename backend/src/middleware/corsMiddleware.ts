@@ -1,5 +1,5 @@
 import cors, { CorsOptions } from "cors";
-import { Application, Request } from "express";
+import { Application } from "express";
 
 const XOrigin = [
   "http://localhost:5173","https://week-17-sherinolivia.web.app"
@@ -12,7 +12,9 @@ const corsOptionsDelegate = (req: any,
     callback: (err: Error | null, options?: CorsOptions) => void) => {
   const clientXOrigin = XOrigin.includes(req.header("Origin"));
   const clientYOrigin = YOrigin.includes(req.header("Origin"));
-
+  const requestOrigin = req.header("Origin");
+  console.log("Request Origin: ", requestOrigin);
+  
   try {
     
     if (clientXOrigin) {

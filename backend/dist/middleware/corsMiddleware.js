@@ -13,6 +13,8 @@ const YOrigin = [
 const corsOptionsDelegate = (req, callback) => {
     const clientXOrigin = XOrigin.includes(req.header("Origin"));
     const clientYOrigin = YOrigin.includes(req.header("Origin"));
+    const requestOrigin = req.header("Origin");
+    console.log("Request Origin: ", requestOrigin);
     try {
         if (clientXOrigin) {
             callback(null, {

@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -13,14 +22,14 @@ const node_cache_1 = __importDefault(require("node-cache"));
 const failedLoginAttemptsCache = new node_cache_1.default({ stdTTL: 600 });
 const resetPasswordCache = new node_cache_1.default({ stdTTL: 300 });
 // Register Account (default is cust)
-const registerUser = async (req, res) => {
+const registerUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { username, email, password, role } = req.body;
-        const hashedPass = await bcrypt_1.default.hash(password, 10);
-        const [existingUser] = await dbConnection_1.DB.promise().query(`SELECT * FROM railway.users WHERE email = ?`, [email]);
+        const hashedPass = yield bcrypt_1.default.hash(password, 10);
+        const [existingUser] = yield dbConnection_1.DB.promise().query(`SELECT * FROM railway.users WHERE email = ?`, [email]);
         if (existingUser.length === 0) {
-            const [newUser] = await dbConnection_1.DB.promise().query(`INSERT INTO railway.users (username, email, password, role) VALUES (?, ?, ?, ?)`, [username, email, hashedPass, 'cust']);
-            const getNewUser = await dbConnection_1.DB.promise().query(`SELECT * FROM railway.users WHERE id = ?`, [newUser.insertId]);
+            const [newUser] = yield dbConnection_1.DB.promise().query(`INSERT INTO railway.users (username, email, password, role) VALUES (?, ?, ?, ?)`, [username, email, hashedPass, 'cust']);
+            const getNewUser = yield dbConnection_1.DB.promise().query(`SELECT * FROM railway.users WHERE id = ?`, [newUser.insertId]);
             return res.status(200).json((0, errorHandling_1.errorHandling)(getNewUser[0], null));
         }
         else {
@@ -31,19 +40,19 @@ const registerUser = async (req, res) => {
         console.error(error);
         return res.status(500).json((0, errorHandling_1.errorHandling)(null, "Register User Failed..!! Internal Error!"));
     }
-};
+});
 exports.registerUser = registerUser;
 // Register user by admin (can create staff)
-const registerUserByAdmin = async (req, res) => {
+const registerUserByAdmin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { username, email, password, role } = req.body;
-        const hashedPass = await bcrypt_1.default.hash(password, 10);
-        const [existingUser] = await dbConnection_1.DB.promise().query(`SELECT * FROM railway.users WHERE email = ?`, [email]);
+        const hashedPass = yield bcrypt_1.default.hash(password, 10);
+        const [existingUser] = yield dbConnection_1.DB.promise().query(`SELECT * FROM railway.users WHERE email = ?`, [email]);
         if (req.role === "admin") {
             console.log(req.role, "<=== test check role");
             if (existingUser.length === 0) {
-                const [newUser] = await dbConnection_1.DB.promise().query(`INSERT INTO railway.users (username, email, password, role) VALUES (?, ?, ?, ?)`, [username, email, hashedPass, role]);
-                const getNewUser = await dbConnection_1.DB.promise().query(`SELECT * FROM railway.users WHERE id = ?`, [newUser.insertId]);
+                const [newUser] = yield dbConnection_1.DB.promise().query(`INSERT INTO railway.users (username, email, password, role) VALUES (?, ?, ?, ?)`, [username, email, hashedPass, role]);
+                const getNewUser = yield dbConnection_1.DB.promise().query(`SELECT * FROM railway.users WHERE id = ?`, [newUser.insertId]);
                 return res.status(200).json((0, errorHandling_1.errorHandling)(getNewUser[0], null));
             }
             else {
@@ -56,13 +65,13 @@ const registerUserByAdmin = async (req, res) => {
         console.error(error);
         return res.status(500).json((0, errorHandling_1.errorHandling)(null, "Register User Failed..!! Internal Error!"));
     }
-};
+});
 exports.registerUserByAdmin = registerUserByAdmin;
 // Login Account
-const loginUser = async (req, res) => {
+const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { email, password } = req.body;
-        const existingUser = await dbConnection_1.DB.promise().query("SELECT * FROM railway.users WHERE email = ?", [email]);
+        const existingUser = yield dbConnection_1.DB.promise().query("SELECT * FROM railway.users WHERE email = ?", [email]);
         const failedAttempts = failedLoginAttemptsCache.get(email);
         const user = existingUser[0][0];
         console.log(user, "password:", user.password);
@@ -70,7 +79,7 @@ const loginUser = async (req, res) => {
             return res.status(400).json((0, errorHandling_1.errorHandling)('Too many failed login attempts', null));
         }
         // Password check
-        const passwordCheck = await bcrypt_1.default.compare(password, user.password);
+        const passwordCheck = yield bcrypt_1.default.compare(password, user.password);
         if (passwordCheck) {
             // Check if the user already has a refresh token
             let refreshToken = req.cookies.refresh_token;
@@ -109,9 +118,9 @@ const loginUser = async (req, res) => {
         console.error(error);
         return res.status(500).json((0, errorHandling_1.errorHandling)(null, 'Cannot Connect!! Internal Error!'));
     }
-};
+});
 exports.loginUser = loginUser;
-const refreshTokenRequest = async (req, res) => {
+const refreshTokenRequest = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const refreshToken = req.cookies.refresh_token; // Get the refresh token from the client
         if (!refreshToken) {
@@ -141,20 +150,20 @@ const refreshTokenRequest = async (req, res) => {
         console.error(error);
         return res.status(500).json((0, errorHandling_1.errorHandling)(null, 'Refresh token is invalid or has expired'));
     }
-};
+});
 exports.refreshTokenRequest = refreshTokenRequest;
 // logout
-const logoutUser = async (req, res) => {
+const logoutUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.clearCookie('access_token');
     res.clearCookie('refresh_token');
     res.json();
-};
+});
 exports.logoutUser = logoutUser;
 // request reset password
-const resetPasswordRequest = async (req, res) => {
+const resetPasswordRequest = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { email } = req.body;
-        const existingUser = await dbConnection_1.DB.promise().query("SELECT * FROM railway.users WHERE email = ?", [email]);
+        const existingUser = yield dbConnection_1.DB.promise().query("SELECT * FROM railway.users WHERE email = ?", [email]);
         const user = existingUser[0][0];
         if (!user) {
             return res.status(400).json((0, errorHandling_1.errorHandling)(null, "User not found"));
@@ -168,10 +177,10 @@ const resetPasswordRequest = async (req, res) => {
         console.error(error);
         return res.status(500).json((0, errorHandling_1.errorHandling)(null, "Password reset request failed"));
     }
-};
+});
 exports.resetPasswordRequest = resetPasswordRequest;
 //  reset password
-const resetPassword = async (req, res) => {
+const resetPassword = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { password } = req.body;
         const resetKey = req.query.resetKey;
@@ -179,12 +188,12 @@ const resetPassword = async (req, res) => {
         if (!email) {
             return res.status(400).json((0, errorHandling_1.errorHandling)(null, "Invalid token"));
         }
-        const user = await dbConnection_1.DB.promise().query("SELECT * FROM railway.users WHERE email = ?", [email]);
+        const user = yield dbConnection_1.DB.promise().query("SELECT * FROM railway.users WHERE email = ?", [email]);
         if (!user) {
             return res.status(400).json((0, errorHandling_1.errorHandling)(null, "User not found"));
         }
-        const hashedPassword = await bcrypt_1.default.hash(password, 10);
-        await dbConnection_1.DB.promise().query("UPDATE railway.users SET password = ? WHERE email = ?", [hashedPassword, email]);
+        const hashedPassword = yield bcrypt_1.default.hash(password, 10);
+        yield dbConnection_1.DB.promise().query("UPDATE railway.users SET password = ? WHERE email = ?", [hashedPassword, email]);
         resetPasswordCache.del(resetKey); // If successful, remove the key from the cache
         return res.status(200).json((0, errorHandling_1.errorHandling)("Password reset success", null));
     }
@@ -192,12 +201,12 @@ const resetPassword = async (req, res) => {
         console.error(error);
         return res.status(500).json((0, errorHandling_1.errorHandling)(null, "Password reset failed"));
     }
-};
+});
 exports.resetPassword = resetPassword;
 // Get All User data (Cust, Staff, Admin) ===> Admin Only!
-const getAllUser = async (req, res) => {
+const getAllUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const allUser = await dbConnection_1.DB.promise().query('SELECT * FROM railway.users');
+        const allUser = yield dbConnection_1.DB.promise().query('SELECT * FROM railway.users');
         if (!allUser) {
             return res.status(400).json((0, errorHandling_1.errorHandling)(null, "User Data Unavailable..."));
         }
@@ -209,27 +218,27 @@ const getAllUser = async (req, res) => {
         console.error(error);
         return res.status(500).json((0, errorHandling_1.errorHandling)(null, "User Data Retrieval Failed...!!"));
     }
-};
+});
 exports.getAllUser = getAllUser;
 // get all cust data (cust) ===> Staff & Admin only!
-const getAllCust = async (req, res) => {
+const getAllCust = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const usersData = await dbConnection_1.DB.promise().query('SELECT * FROM railway.users WHERE role = ?', ["cust"]);
+        const usersData = yield dbConnection_1.DB.promise().query('SELECT * FROM railway.users WHERE role = ?', ["cust"]);
         return res.status(200).json((0, errorHandling_1.errorHandling)(usersData[0], null));
     }
     catch (error) {
         console.error(error);
         return res.status(500).json((0, errorHandling_1.errorHandling)(null, "User Data Retrieval Failed...!!"));
     }
-};
+});
 exports.getAllCust = getAllCust;
 // get user by ID aka profile ===> automatically shows specific user their profile (including staff & admin)
-const userProfile = async (req, res) => {
+const userProfile = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const user = req.user;
         if (user) {
             const userId = user.id;
-            const userData = await dbConnection_1.DB.promise().query('SELECT * FROM railway.users WHERE id = ?', [userId]);
+            const userData = yield dbConnection_1.DB.promise().query('SELECT * FROM railway.users WHERE id = ?', [userId]);
             return res.status(200).json((0, errorHandling_1.errorHandling)(userData[0], null));
         }
         return res.status(400).json((0, errorHandling_1.errorHandling)(null, "User Data Not Found..."));
@@ -238,19 +247,19 @@ const userProfile = async (req, res) => {
         console.error(error);
         return res.status(500).json((0, errorHandling_1.errorHandling)(null, "User Data Retrieval Failed...!!"));
     }
-};
+});
 exports.userProfile = userProfile;
 // get user by ID =>>> staff & admin can check specific users, user can only see their own
-const getOneUser = async (req, res) => {
+const getOneUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { role, id } = req.user;
         const checkId = req.params.id;
         if (role == "staff" || role == "admin") {
-            const userData = await dbConnection_1.DB.promise().query('SELECT * FROM railway.users WHERE id = ?', [checkId]);
+            const userData = yield dbConnection_1.DB.promise().query('SELECT * FROM railway.users WHERE id = ?', [checkId]);
             return res.status(200).json((0, errorHandling_1.errorHandling)(userData[0], null));
         }
         else if ((role !== "staff" && role !== "admin") && id == checkId) {
-            const userData = await dbConnection_1.DB.promise().query('SELECT * FROM railway.users WHERE id = ?', [id]);
+            const userData = yield dbConnection_1.DB.promise().query('SELECT * FROM railway.users WHERE id = ?', [id]);
             return res.status(200).json((0, errorHandling_1.errorHandling)(userData[0], null));
         }
         else {
@@ -261,20 +270,20 @@ const getOneUser = async (req, res) => {
         console.error(error);
         return res.status(500).json((0, errorHandling_1.errorHandling)(null, "User Data Retrieval Failed...!!"));
     }
-};
+});
 exports.getOneUser = getOneUser;
 // Patch/Update name & address
-const updateUser = async (req, res) => {
+const updateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { role, id } = req.user;
         const checkId = req.params.id;
         const { name, address } = req.body;
         if ((role !== "staff" && role !== "admin") && id == checkId) {
-            await dbConnection_1.DB.promise().query(`
+            yield dbConnection_1.DB.promise().query(`
                 UPDATE railway.users
                 SET name = ?, address = ?
                 WHERE id = ?`, [name, address, id]);
-            const updatedData = await dbConnection_1.DB.promise().query(`
+            const updatedData = yield dbConnection_1.DB.promise().query(`
                 SELECT * FROM railway.users
                 WHERE id = ?`, [checkId]);
             res.status(200).json((0, errorHandling_1.errorHandling)({
@@ -283,11 +292,11 @@ const updateUser = async (req, res) => {
             }, null));
         }
         else if (role == "staff" || role == "admin") {
-            await dbConnection_1.DB.promise().query(`
+            yield dbConnection_1.DB.promise().query(`
                 UPDATE railway.users
                 SET name = ?, address = ?
                 WHERE id = ?`, [name, address, checkId]);
-            const updatedData = await dbConnection_1.DB.promise().query(`
+            const updatedData = yield dbConnection_1.DB.promise().query(`
                 SELECT * FROM railway.users
                 WHERE id = ?`, [checkId]);
             return res.status(200).json((0, errorHandling_1.errorHandling)({
@@ -303,5 +312,5 @@ const updateUser = async (req, res) => {
         console.error(error);
         return res.status(500).json((0, errorHandling_1.errorHandling)(null, "User Data Update Failed...!!"));
     }
-};
+});
 exports.updateUser = updateUser;

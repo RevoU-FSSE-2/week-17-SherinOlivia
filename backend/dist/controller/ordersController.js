@@ -1,23 +1,32 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getOrderHistory = exports.deleteOrder = exports.getAllCustOrders = exports.getAllOrders = exports.updateOrderStatus = exports.createNewOrder = void 0;
 const dbConnection_1 = require("../config/dbConnection");
 const errorHandling_1 = require("./errorHandling");
-const createNewOrder = async (req, res) => {
+const createNewOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { role, id } = req.user;
         const { product_name, order_qty } = req.body;
         if (role == "staff" || role == "admin") {
             const { custId, product_name, order_qty } = req.body;
-            const [newOrder] = await dbConnection_1.DB.promise().query(`INSERT INTO railway.orders (custId, product_name, order_qty, total, status, order_datetime, isDeleted)
+            const [newOrder] = yield dbConnection_1.DB.promise().query(`INSERT INTO railway.orders (custId, product_name, order_qty, total, status, order_datetime, isDeleted)
             VALUES (?, ?, ?, (SELECT price FROM railway.products WHERE name = ?) * ?, ?, ?, ?)`, [custId, product_name, order_qty, product_name, order_qty, 'pending', new Date(), '0']);
-            const [createdOrder] = await dbConnection_1.DB.promise().query(`SELECT * FROM railway.orders WHERE id = ?`, [newOrder.insertId]);
+            const [createdOrder] = yield dbConnection_1.DB.promise().query(`SELECT * FROM railway.orders WHERE id = ?`, [newOrder.insertId]);
             return res.status(200).json((0, errorHandling_1.errorHandling)(createdOrder[0], null));
         }
         else {
-            const [newOrder] = await dbConnection_1.DB.promise().query(`INSERT INTO railway.orders (custId, product_name, order_qty, total, status, order_datetime, isDeleted)
+            const [newOrder] = yield dbConnection_1.DB.promise().query(`INSERT INTO railway.orders (custId, product_name, order_qty, total, status, order_datetime, isDeleted)
             VALUES (?, ?, ?, (SELECT price FROM railway.products WHERE name = ?) * ?, ?, ?, ?)`, [id, product_name, order_qty, product_name, order_qty, 'pending', new Date(), '0']);
-            const [createdOrder] = await dbConnection_1.DB.promise().query(`SELECT * FROM railway.orders WHERE id = ?`, [newOrder.insertId]);
+            const [createdOrder] = yield dbConnection_1.DB.promise().query(`SELECT * FROM railway.orders WHERE id = ?`, [newOrder.insertId]);
             return res.status(200).json((0, errorHandling_1.errorHandling)(createdOrder[0], null));
         }
     }
@@ -25,21 +34,21 @@ const createNewOrder = async (req, res) => {
         console.error(error);
         return res.status(500).json((0, errorHandling_1.errorHandling)(null, "Order Request Failed..!! Internal Error!"));
     }
-};
+});
 exports.createNewOrder = createNewOrder;
-const updateOrderStatus = async (req, res) => {
+const updateOrderStatus = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.orderId;
     const { status } = req.body;
     try {
-        const getOrder = await dbConnection_1.DB.promise().query(`SELECT * FROM railway.orders WHERE id = ? AND isDeleted = ?`, [id, '0']);
+        const getOrder = yield dbConnection_1.DB.promise().query(`SELECT * FROM railway.orders WHERE id = ? AND isDeleted = ?`, [id, '0']);
         if (getOrder[0].length > 0) {
             if (getOrder[0][0].status === "cancelled") {
                 return res.status(400).json((0, errorHandling_1.errorHandling)(null, "Order already cancelled...! Please make new Order!"));
                 return;
             }
             else {
-                await dbConnection_1.DB.promise().query(`UPDATE railway.orders SET status = ? WHERE id = ?`, [status, id]);
-                const updatedOrder = await dbConnection_1.DB.promise().query(`SELECT * FROM railway.orders WHERE id = ?`, [id]);
+                yield dbConnection_1.DB.promise().query(`UPDATE railway.orders SET status = ? WHERE id = ?`, [status, id]);
+                const updatedOrder = yield dbConnection_1.DB.promise().query(`SELECT * FROM railway.orders WHERE id = ?`, [id]);
                 return res.status(200).json((0, errorHandling_1.errorHandling)(updatedOrder[0][0], null));
             }
         }
@@ -51,14 +60,14 @@ const updateOrderStatus = async (req, res) => {
         console.error(error);
         return res.status(500).json((0, errorHandling_1.errorHandling)(null, "Order Status Update Failed..!! Internal Error!"));
     }
-};
+});
 exports.updateOrderStatus = updateOrderStatus;
 // get all orders (cust can only see their own)
-const getAllOrders = async (req, res) => {
+const getAllOrders = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { role, id } = req.user;
         if (role === "cust") {
-            const getOrders = await dbConnection_1.DB.promise().query(`
+            const getOrders = yield dbConnection_1.DB.promise().query(`
                 SELECT o.id, o.status, o.custId, u.name, u.address, o.product_name, o.order_qty, o.total, o.order_datetime FROM  railway.orders as o LEFT JOIN railway.users as u ON o.custId = u.id
                 WHERE o.CustId = ? AND o.isDeleted = ?`, [id, '0']);
             if (getOrders[0].length > 0) {
@@ -72,7 +81,7 @@ const getAllOrders = async (req, res) => {
             }
         }
         else if (role == "staff" || role == "admin") {
-            const getOrders = await dbConnection_1.DB.promise().query(`
+            const getOrders = yield dbConnection_1.DB.promise().query(`
             SELECT o.id, o.status, o.custId, u.name, u.address, o.product_name, o.order_qty, o.total, o.order_datetime FROM  railway.orders as o LEFT JOIN railway.users as u ON o.custId = u.id WHERE o.isDeleted = ?`, ['0']);
             if (getOrders[0].length > 0) {
                 res.status(200).json((0, errorHandling_1.errorHandling)({
@@ -92,13 +101,13 @@ const getAllOrders = async (req, res) => {
         console.error(error);
         return res.status(500).json((0, errorHandling_1.errorHandling)(null, "Failed to retreive order data..!! Internal Error!"));
     }
-};
+});
 exports.getAllOrders = getAllOrders;
 // get orders by cust id ===> staff & admin only!!
-const getAllCustOrders = async (req, res) => {
+const getAllCustOrders = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const userId = req.params.custId;
-        const getCustOrders = await dbConnection_1.DB.promise().query(`
+        const getCustOrders = yield dbConnection_1.DB.promise().query(`
         SELECT o.id, o.status, o.custId, u.name, u.address, o.product_name, o.order_qty, o.total, o.order_datetime FROM railway.orders as o LEFT JOIN railway.users as u ON o.custId = u.id
         WHERE o.CustId = ? AND isDeleted = ?`, [userId, '0']);
         return res.status(200).json((0, errorHandling_1.errorHandling)({
@@ -110,19 +119,19 @@ const getAllCustOrders = async (req, res) => {
         console.error(error);
         return res.status(500).json((0, errorHandling_1.errorHandling)(null, "Failed to retreive cust orders..!! Internal Error!"));
     }
-};
+});
 exports.getAllCustOrders = getAllCustOrders;
 // soft delete order
-const deleteOrder = async (req, res) => {
+const deleteOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const orderId = req.params.orderId;
         const { id, role } = req.user;
-        const checkOrder = await dbConnection_1.DB.promise().query(`
+        const checkOrder = yield dbConnection_1.DB.promise().query(`
         SELECT o.id, o.status, o.custId, u.name, u.address, o.product_name, o.order_qty, o.total, o.order_datetime FROM railway.orders as o LEFT JOIN railway.users as u ON o.custId = u.id
         WHERE o.id = ?`, [orderId]);
         if (role == "cust") {
             if (checkOrder[0].length > 0 && checkOrder[0][0].custId == id) {
-                await dbConnection_1.DB.promise().query(`UPDATE railway.orders SET isDeleted = ? WHERE railway.orders.id = ? AND railway.orders.custId = ?`, ['1', orderId, id]);
+                yield dbConnection_1.DB.promise().query(`UPDATE railway.orders SET isDeleted = ? WHERE railway.orders.id = ? AND railway.orders.custId = ?`, ['1', orderId, id]);
                 return res.status(200).json((0, errorHandling_1.errorHandling)("Order data Successfully deleted", null));
             }
             else {
@@ -131,7 +140,7 @@ const deleteOrder = async (req, res) => {
         }
         else {
             if (checkOrder[0].length > 0) {
-                await dbConnection_1.DB.promise().query(`UPDATE railway.orders SET isDeleted = ? WHERE railway.orders.id = ? AND railway.orders.custId = ?`, ['1', orderId, id]);
+                yield dbConnection_1.DB.promise().query(`UPDATE railway.orders SET isDeleted = ? WHERE railway.orders.id = ? AND railway.orders.custId = ?`, ['1', orderId, id]);
                 return res.status(200).json((0, errorHandling_1.errorHandling)("Order data Successfully deleted", null));
             }
             else {
@@ -143,11 +152,11 @@ const deleteOrder = async (req, res) => {
         console.error(error);
         return res.status(500).json((0, errorHandling_1.errorHandling)(null, "Failed to remove order..!! Internal Error!"));
     }
-};
+});
 exports.deleteOrder = deleteOrder;
-const getOrderHistory = async (req, res) => {
+const getOrderHistory = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const [orderHistory] = await dbConnection_1.DB.promise().query(`
+        const [orderHistory] = yield dbConnection_1.DB.promise().query(`
         SELECT o.id, o.status, o.custId, u.name, u.address, o.product_name, 
         o.order_qty, o.total, o.order_datetime FROM railway.orders as o 
         LEFT JOIN railway.users as u ON o.custId = u.id`);
@@ -157,5 +166,5 @@ const getOrderHistory = async (req, res) => {
         console.error(error);
         return res.status(500).json((0, errorHandling_1.errorHandling)(null, "Failed to retreive orders history...!! Internal Error!"));
     }
-};
+});
 exports.getOrderHistory = getOrderHistory;
