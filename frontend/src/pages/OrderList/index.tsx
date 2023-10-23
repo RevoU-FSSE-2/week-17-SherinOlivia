@@ -79,7 +79,7 @@ useEffect(() => {
     {
       title: 'Product',
       dataIndex: 'product',
-      key: 'product',
+      key: 'product_name',
       render: (text) => text || 'N/A',  // Render 'N/A' if 'product' is falsy or undefined
     },
     {

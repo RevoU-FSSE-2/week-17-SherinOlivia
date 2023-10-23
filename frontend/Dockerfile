@@ -16,14 +16,16 @@ WORKDIR /app
 # Copy the package.json and package-lock.json into the container
 COPY  package*.json ./
 
-# install project dependencies
-RUN npm install
-
 # Copy the Source Code into the container
 COPY  . .
 
+# install project dependencies
+RUN npm install -g serve
+RUN npm install
+RUN npm run build
+
 # Expose the port that the vite project project runs on
-EXPOSE 5173
+EXPOSE 8080
 
 # Command to run the vite project
-CMD ["pnpm","run","dev"]
+CMD ["serve","-s","-l","8080","./dist"]
