@@ -19,4 +19,4 @@ COPY  . .
 EXPOSE 5555
 
 # Command to run the Node.js app
-CMD ["node", "index.js"]
+CMD ["node", "dist/index.js"]
