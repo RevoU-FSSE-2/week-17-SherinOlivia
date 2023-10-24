@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "site": "week-17-sherinolivia",
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

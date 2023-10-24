@@ -9,7 +9,7 @@ const Profile = () => {
     async () => {
 
       try {
-        const response = await fetch (`https://mock-api.arikmpt.com/api/user/profile`, {
+        const response = await fetch (`https://w17sh-backend-img-cifhetjmdq-uw.a.run.app/api/user/profile`, {
           method: 'GET',
           headers: {
               'Content-Type': 'application/json'

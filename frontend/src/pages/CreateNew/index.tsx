@@ -7,7 +7,7 @@ const CreateNew = () => {
     const navigate = useNavigate()
 
     const handleCreate = async (values: CreateInfo) => {
-        const apiUrl = "https://week-17-sherinolivia.up.railway.app/api/orders/new"
+        const apiUrl = "https://w17sh-backend-img-cifhetjmdq-uw.a.run.app/api/orders/new"
       
         try {
             const response = await fetch (apiUrl, {

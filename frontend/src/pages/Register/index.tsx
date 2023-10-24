@@ -4,7 +4,7 @@ import { Register as RegisterForm } from '../../components';
 
   const Register = () => {
     const navigate = useNavigate()
-    const apiUrl = "https://week-17-sherinolivia.up.railway.app/api/users/register"
+    const apiUrl = "https://w17sh-backend-img-cifhetjmdq-uw.a.run.app/api/users/register"
     
       const handleRegister = async (values: RegisterInfo) => {
         console.log(`Successfully Registered..!`, values)

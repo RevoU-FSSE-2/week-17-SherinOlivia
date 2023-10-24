@@ -6,7 +6,7 @@ import { useCallback, useEffect, useState } from "react";
 const UpdateOrder = () => {
     const navigate = useNavigate()
     const [orders, setOrders] = useState<OrderInfo>()
-    const apiUrl = import.meta.env.VITE_REACT_APP_BASE_UPDATE_URL;
+    const apiUrl = "https://w17sh-backend-img-cifhetjmdq-uw.a.run.app/api/orders/update/:orderId";
     const { id } = useParams()
 
     const getOrder = useCallback(
