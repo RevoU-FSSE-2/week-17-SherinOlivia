@@ -16,8 +16,23 @@ const OrderList: React.FC = () => {
   const navigate = useNavigate();
   const apiUrl = "https://w17sh-backend-img-cifhetjmdq-uw.a.run.app/api/orders"
 
-const handleLogOut = () => {
-  navigate('/login');
+const handleLogOut = async () => {
+  const apiUrlLogout = "https://w17sh-backend-img-cifhetjmdq-uw.a.run.app/api/users/logout"
+
+  try {
+    const response = await fetch (apiUrlLogout, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    console.log(response)
+    navigate('/login');
+    
+  } catch (error) {
+      console.error(error)
+      alert("Login Failedddd...!")
+  }
 } 
 
 const getOrder = useCallback(

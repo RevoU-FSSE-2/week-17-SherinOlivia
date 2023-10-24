@@ -1,5 +1,5 @@
 import './App.css'
-import  {BrowserRouter, Route, Routes } from 'react-router-dom'
+import  {BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { CreateNew, Login, Register, UpdateOrder, OrderList, Profile } from './pages'
 import AppProvider from './provider/AppProvider'
 
@@ -11,6 +11,7 @@ function App() {
       <BrowserRouter>
         <AppProvider>
           <Routes>
+            <Route path='/' element={<Navigate to="/login" />} />
             <Route path='/login' element={<Login />} /> 
             <Route path='/register' element={<Register />} />
             <Route path='/dashboard' element={<OrderList />} />
