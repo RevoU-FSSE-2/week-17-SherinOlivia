@@ -6,13 +6,13 @@
 <br>
 
 **Tools used:**
-1. Backend
+1. Backend : Containerized & Deployed to GCP
 - **BCrypt**
 - **JWT**
 - **Node-cache**
-- **MySQL**
+- **MySQL** via Railway
 
-2. Frontend
+2. Frontend : Deployed to Firebase
 - **UI Library (AntDesign)**
 - **Formik & Yup**
 - **React**
@@ -20,25 +20,29 @@
 - **dotenv**
 - **React Router**
 
-**Features (tba):**
+**Features:**
 - Register user
 - Login user
+- List of Order
 <br>
 
 ## Deployed link: 
 <p align="center">
-<a href="https://week-17-sherinolivia.web.app/">https://week-17-sherinolivia.web.app/</a>
+Front End: <a href="https://week-17-sherinolivia.web.app/">https://week-17-sherinolivia.web.app</a>
+</p>
+<p align="center">
+Back End: <a href="https://w17sh-backend-img-cifhetjmdq-uw.a.run.app"> w17sh-backend-img-cifhetjmdq-uw.a.run.app</a>
 </p> 
 <br>
 
 ## How to Run the App
 
-For testing purposes, please access the deployed link above (tba)
+For testing purposes, please access the deployed link above
 
 Otherwise:
 - git clone or download this repository to your machine
 - install the necessities: `pnpm i` / `npm i`
-- create `.env` file using the provided `.env.example` and fill it with your data (or contact me for mine)
+- create `.env` file using the provided `.env.example` (Please contact me for .env details)
 - run the `pnpm run dev` on your terminal to gain access to `localhost`
  **Please contact me if you run into a bug or if you require any assistance, thank you.** 
 
