@@ -13,14 +13,14 @@ interface Props {
 }
 
 const initialValues = {
-    product: "",
-    qty: 1,
+    product_name: "",
+    order_qty: 1,
     status: "Pending", 
   };
   
   const validationSchema = Yup.object().shape({
-    product: Yup.string().required('Please Enter the product'),
-    qty: Yup.number().required('Please Enter the quantity'),
+    product_name: Yup.string().required('Please Enter the product'),
+    order_qty: Yup.number().required('Please Enter the quantity'),
     status: Yup.string().required('Please Select the Status!'),
   });
   
@@ -47,12 +47,23 @@ const OrderForm = ({onSubmit, order, content}: Props) => {
                         </div>
 
 
-                        <AntForm.Item label="Name" name="name">
+                        <AntForm.Item label="Product Name" name="Product Name">
                             <div>
-                                <Field name="name" as={Input} placeholder="Enter Name" />
+                                <Field name="Product Name" as={Input} placeholder="Enter Product Name" />
                         
                                 <span className={styles.error}>
-                                    <ErrorMessage name="name" />
+                                    <ErrorMessage name="Product Name" />
+                                </span>
+                            </div>
+
+                        </AntForm.Item>
+
+                        <AntForm.Item label="Order Qty" name="Order Qty">
+                            <div>
+                                <Field name="Order Qty" as={Input} placeholder="Enter Order Qty" />
+                        
+                                <span className={styles.error}>
+                                    <ErrorMessage name="Order Qty" />
                                 </span>
                             </div>
 

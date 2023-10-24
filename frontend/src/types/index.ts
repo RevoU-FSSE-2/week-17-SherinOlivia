@@ -11,12 +11,14 @@ export interface LoginInfo {
 }
 export interface OrderInfo {
     id: string;
-    product: string;
-    qty: number;
+    product_name: string;
+    order_qty: number;
     status: string;
 }
 
 export type OrderFormInfo = Omit<OrderInfo, 'id'>
+
+export type CreateInfo = Omit<OrderInfo, 'id'>
 
 export interface GetOrderResponse {
     categories: OrderInfo[];

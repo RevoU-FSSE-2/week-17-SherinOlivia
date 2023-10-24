@@ -42,18 +42,23 @@ const getOrder = useCallback(
     const response = await fetch(apiUrl, {
       method: 'GET',
       credentials: 'include',
-    });
-    const data = await response.json();
-    console.log(data)
-    
-    if (data && data.data) {
-      const datas = data.data.map((order: { id: string; }) => ({
-        ...order,
-        key: order.id
-      }));
-      setOrders(datas);
+    });      if (response.ok) {
+      const result = await response.json();
+
+      if (result && result.data && Array.isArray(result.data.data)) {
+        // Access the nested data array and map it to your state
+        const datas = result.data.data.map((order: OrderInfo) => ({
+          ...order,
+          key: order.id,
+        }));
+        setOrders(datas);
+      } else {
+        setOrders([]); // Handle the case where the structure doesn't match the expected format
+      }
     } else {
-      setOrders([]);
+      // Handle the case when the response status is not OK (e.g., 4xx or 5xx errors)
+      console.error("Request failed with status:", response.status);
+      alert("Failed to fetch Orders!");
     }
   } catch (error) {
     console.error("ERROR:", error);
@@ -93,14 +98,20 @@ useEffect(() => {
     },
     {
       title: 'Product',
-      dataIndex: 'product',
+      dataIndex: 'product_name',
       key: 'product_name',
       render: (text) => text || 'N/A',  // Render 'N/A' if 'product' is falsy or undefined
     },
     {
       title: 'Qty',
-      dataIndex: 'qty',
-      key: 'qty',
+      dataIndex: 'order_qty',
+      key: 'order_qty',
+      render: (number) => number || 'N/A',  // Render 'N/A' if 'product' is falsy or undefined
+    },
+    {
+      title: 'Total',
+      dataIndex: 'total',
+      key: 'total',
       render: (number) => number || 'N/A',  // Render 'N/A' if 'product' is falsy or undefined
     },
     {

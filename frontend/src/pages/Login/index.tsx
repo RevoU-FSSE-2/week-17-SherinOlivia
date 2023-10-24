@@ -19,15 +19,16 @@ const Login = () => {
             body: JSON.stringify(values)
         })
         console.log(response)
-        const data = await response.json()
-
+        
         if (response.ok){
-            const token = data.data.token
-
-            localStorage.setItem('authToken', token)
-            navigate('/');
+          const data = await response.json()
+          if (data.success) {
+            navigate('/dashboard');
+          } else {
+            console.log(data.message); 
+          } 
         } else {
-            alert(data.errors)
+          alert("Login failed. Please check your credentials.");
         }
 
     } catch (error) {

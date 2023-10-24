@@ -18,15 +18,15 @@ const CreateNew = () => {
             if (response.ok) {
                 console.log(response)
                 await response.json()
-                navigate('/');  
+                navigate('/dashboard');  
             } else {
-                console.log("Failed to create new category")
+                console.log("Failed to create new Order")
                 return
             }
    
         } catch (error) {
             console.error(error)
-            alert("Failed to Create New Category...!")
+            alert("Failed to Create New Order...!")
         }  
       }
 

@@ -1,7 +1,7 @@
 {
   "hosting": {
     "site": "week-17-sherinolivia",
-    "public": "public",
+    "public": "dist",
     "ignore": [
       "firebase.json",
       "**/.*",
