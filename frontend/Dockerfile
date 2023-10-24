@@ -28,4 +28,4 @@ RUN npm run build
 EXPOSE 8080
 
 # Command to run the vite project
-CMD ["serve","-s","-l","8080","./dist"]
+CMD ["serve", "./public", "-l", "8080"]

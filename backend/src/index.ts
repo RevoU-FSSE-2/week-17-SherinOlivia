@@ -9,7 +9,7 @@ import http, { Server } from 'http'
 
 const app: Express = express()
 const server: Server = http.createServer(app)
-let port: number;
+let PORT: number;
 
 // middleware
 appMiddleware(app)
@@ -42,8 +42,8 @@ app.use(router)
 server.listen(0, () => {
     const address = server.address();
     if(address && typeof address !== 'string'){
-        port = address.port || 5555;
-        console.log(`Server is running on port:${port}`)
+        PORT = address.port || 5555;
+        console.log(`Server is running on port:${PORT}`)
     } else {
         console.error("Server address is not available.")
     }
