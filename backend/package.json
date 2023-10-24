@@ -5,8 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "npx tsc",
-    "start": "node dist/index.js",
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon ./dist/index.js\""
+    "start": "node dist/index.js"
   },
   "engines": {
     "node": "18"
@@ -40,9 +39,7 @@
     "@types/morgan": "^1.9.7",
     "@types/node": "^20.8.7",
     "@types/uuid": "^9.0.6",
-    "concurrently": "^8.2.2",
     "firebase-functions-test": "^3.1.0",
-    "nodemon": "^3.0.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
   }
