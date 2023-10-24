@@ -101,12 +101,17 @@ const loginUser = async (req: Request, res: Response) => {
             res.cookie("access_token", accessToken, {
                 expires: accessTokenExpiration,
                 httpOnly: true,
+                sameSite: "none",
+                secure: true,
             });
-
+            
             res.cookie("refresh_token", refreshToken, {
                 expires: refreshTokenExpiration,
                 httpOnly: true,
+                sameSite: "none",
+                secure: true,
             });
+            
 
             return res.status(200).json(errorHandling({
                 message: `${user.username} Successfully logged in as ${user.role}`,
@@ -148,7 +153,9 @@ const refreshTokenRequest = async (req: any, res: Response) => {
         const accessTokenExpiration = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
         res.cookie('access_token', accessToken, {
             expires: accessTokenExpiration,
-            httpOnly: true
+            httpOnly: true,
+            sameSite: "none",
+            secure: true,
         });
 
         res.status(200).json(errorHandling({

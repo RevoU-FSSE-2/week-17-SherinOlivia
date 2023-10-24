@@ -34,19 +34,19 @@ The capabilities of the project are:
 ## API Endpoints
 
 <p align="center">
-<a href="https://w16sh.up.railway.app/">w16sh.up.railway.app</a>
+<a href="https://w17sh-backend-img-cifhetjmdq-uw.a.run.app">w17sh-backend-img-cifhetjmdq-uw.a.run.app</a>
 </p> 
 
 ## Sample Accounts
 ```JSON
 Cust:
-    "email": "raven@gmail.com",
-    "password":"raven321"
+    "email": "Zoya@gmail.com",
+    "password":"Zoyaa123"
 ```
 ```JSON
 Staff:
-    "email":"zoya@gmail.com",
-    "password":"zoya123"
+    "email":"dreya@gmail.com",
+    "password":"dreya123"
 ```
 ```JSON
 Admin:
@@ -139,7 +139,7 @@ Update (parameter: orderId):
 
 ## API Endpoints
 <p align="center">
-<a href="https://w16sh.up.railway.app/">w16sh.up.railway.app</a>
+<a href="https://w17sh-backend-img-cifhetjmdq-uw.a.run.app/">w17sh-backend-img-cifhetjmdq-uw.a.run.app</a>
 </p> 
 
 **USERS**
@@ -147,16 +147,16 @@ Update (parameter: orderId):
 
 | Name  | HTTP Method | Endpoint | Authentication | Authorization |
 | ----------- | ----------- | ----------- | ----------- | ----------- |
-| **Homepage** | `GET` |[/](https://w16sh.up.railway.app/) | ❌ | ❌ |
-| **Register User** | `POST` | [/api/users/register](https://w16sh.up.railway.app/api/users/register) | ❌ | ❌ |
-| **Register User By Admin** | `POST` | [/api/users/admin/register](https://w16sh.up.railway.app/api/users/admin/register) | ✔ | **admin** |
-| **Login User** | `POST` | [/api/users/login](https://w16sh.up.railway.app/api/users/login) | ❌ | ❌ |
-| **Request Refresh Token** | `POST` | [/api/users/refresh](https://w16sh.up.railway.app/api/users/refresh) | ✔ | ❌ |
-| **Update Name & Address** | `PATCH` | [/api/users/update/{id}](https://w16sh.up.railway.app/api/users/update/4) | ✔ | **cust**, **staff**, **admin** |
-| **List All Cust Data** | `GET` | [/api/users/cust](https://w16sh.up.railway.app/api/users/cust) | ✔ | **staff**, **admin** |
-| **List All User Data** | `GET` | [/api/users](https://w16sh.up.railway.app/api/users) | ✔ | **admin** |
-| **Get Specific User Data ('cust' can only see their own)** | `GET` | [/api/users/profile/{id}](https://w16sh.up.railway.app/api/users/profile/1) | ✔ | **cust**, **staff**, **admin** |
-| **User Profile (each user sees their own)** | `GET` | [/api/users/profile](https://w16sh.up.railway.app/api/users/profile) | ✔ | **cust**, **staff**, **admin** |
+| **Homepage** | `GET` |[/](https://w17sh-backend-img-cifhetjmdq-uw.a.run.app/) | ❌ | ❌ |
+| **Register User** | `POST` | [/api/users/register](https://w17sh-backend-img-cifhetjmdq-uw.a.run.app/api/users/register) | ❌ | ❌ |
+| **Register User By Admin** | `POST` | [/api/users/admin/register](https://w17sh-backend-img-cifhetjmdq-uw.a.run.app/api/users/admin/register) | ✔ | **admin** |
+| **Login User** | `POST` | [/api/users/login](https://w17sh-backend-img-cifhetjmdq-uw.a.run.app/api/users/login) | ❌ | ❌ |
+| **Request Refresh Token** | `POST` | [/api/users/refresh](https://w17sh-backend-img-cifhetjmdq-uw.a.run.app/api/users/refresh) | ✔ | ❌ |
+| **Update Name & Address** | `PATCH` | [/api/users/update/{id}](https://w17sh-backend-img-cifhetjmdq-uw.a.run.app/api/users/update/4) | ✔ | **cust**, **staff**, **admin** |
+| **List All Cust Data** | `GET` | [/api/users/cust](https://w17sh-backend-img-cifhetjmdq-uw.a.run.app/api/users/cust) | ✔ | **staff**, **admin** |
+| **List All User Data** | `GET` | [/api/users](https://w17sh-backend-img-cifhetjmdq-uw.a.run.app/api/users) | ✔ | **admin** |
+| **Get Specific User Data ('cust' can only see their own)** | `GET` | [/api/users/profile/{id}](https://w17sh-backend-img-cifhetjmdq-uw.a.run.app/api/users/profile/1) | ✔ | **cust**, **staff**, **admin** |
+| **User Profile (each user sees their own)** | `GET` | [/api/users/profile](https://w17sh-backend-img-cifhetjmdq-uw.a.run.app/api/users/profile) | ✔ | **cust**, **staff**, **admin** |
 </div>
 
 **PRODUCTS**
@@ -164,11 +164,11 @@ Update (parameter: orderId):
 
 | Name  | HTTP Method | Endpoint | Authentication | Authorization |
 | ----------- | ----------- | ----------- | ----------- | ----------- |
-| **Homepage** | `GET` |[/](https://w16sh.up.railway.app/) | ❌ | ❌ |
-| **Create New Product** | `POST` | [/api/products/new](https://w16sh.up.railway.app/api/products/new) | ✔ | **staff**, **admin** |
-| **Update Qty & Price** | `PATCH` | [/api/products/update/{id}](https://w16sh.up.railway.app/api/products/update/4) | ✔ | **staff**, **admin** |
-| **Get Product by ID** | `GET` | [/api/products/{id}](https://w16sh.up.railway.app/api/products/1) | ❌ | ❌ |
-| **List All Products** | `GET` | [/api/products](https://w16sh.up.railway.app/api/products) | ❌ | ❌ |
+| **Homepage** | `GET` |[/](https://w17sh-backend-img-cifhetjmdq-uw.a.run.app/) | ❌ | ❌ |
+| **Create New Product** | `POST` | [/api/products/new](https://w17sh-backend-img-cifhetjmdq-uw.a.run.app/api/products/new) | ✔ | **staff**, **admin** |
+| **Update Qty & Price** | `PATCH` | [/api/products/update/{id}](https://w17sh-backend-img-cifhetjmdq-uw.a.run.app/api/products/update/4) | ✔ | **staff**, **admin** |
+| **Get Product by ID** | `GET` | [/api/products/{id}](https://w17sh-backend-img-cifhetjmdq-uw.a.run.app/api/products/1) | ❌ | ❌ |
+| **List All Products** | `GET` | [/api/products](https://w17sh-backend-img-cifhetjmdq-uw.a.run.app/api/products) | ❌ | ❌ |
 </div>
 
 **ORDERS**
@@ -176,13 +176,13 @@ Update (parameter: orderId):
 
 | Name  | HTTP Method | Endpoint | Authentication | Authorization |
 | ----------- | ----------- | ----------- | ----------- | ----------- |
-| **Homepage** | `GET` |[/](https://w16sh.up.railway.app/) | ❌ | ❌ |
-| **Create New Order** | `POST` | [/api/orders/new](https://w16sh.up.railway.app/api/orders/new) | ✔ | **cust**, **staff**, **admin** |
-| **Update Order Status** | `PATCH` | [/api/orders/update/{id}](https://w16sh.up.railway.app/api/orders/update/4) | ✔ | **staff**, **admin** |
-| **Delete Order (Soft Delete)** | `DELETE` | [/api/orders/delete/{id}](https://w16sh.up.railway.app/api/orders/delete/4) | ✔ | **cust**, **staff**, **admin** |
-| **Get All Orders History (active + deleted)** | `GET` | [/api/orders/history](https://w16sh.up.railway.app/api/orders/history) | ✔ | **admin** |
-| **List All Orders by Cust ID** | `GET` | [/api/orders/{custId}](https://w16sh.up.railway.app/api/orders/{custId}) | ✔ | **staff**, **admin** |
-| **List All Orders** | `GET` | [/api/orders](https://w16sh.up.railway.app/api/orders) | ✔ | **cust**, **staff**, **admin** |
+| **Homepage** | `GET` |[/](https://w17sh-backend-img-cifhetjmdq-uw.a.run.app/) | ❌ | ❌ |
+| **Create New Order** | `POST` | [/api/orders/new](https://w17sh-backend-img-cifhetjmdq-uw.a.run.app/api/orders/new) | ✔ | **cust**, **staff**, **admin** |
+| **Update Order Status** | `PATCH` | [/api/orders/update/{id}](https://w17sh-backend-img-cifhetjmdq-uw.a.run.app/api/orders/update/4) | ✔ | **staff**, **admin** |
+| **Delete Order (Soft Delete)** | `DELETE` | [/api/orders/delete/{id}](https://w17sh-backend-img-cifhetjmdq-uw.a.run.app/api/orders/delete/4) | ✔ | **cust**, **staff**, **admin** |
+| **Get All Orders History (active + deleted)** | `GET` | [/api/orders/history](https://w17sh-backend-img-cifhetjmdq-uw.a.run.app/api/orders/history) | ✔ | **admin** |
+| **List All Orders by Cust ID** | `GET` | [/api/orders/{custId}](https://w17sh-backend-img-cifhetjmdq-uw.a.run.app/api/orders/{custId}) | ✔ | **staff**, **admin** |
+| **List All Orders** | `GET` | [/api/orders](https://w17sh-backend-img-cifhetjmdq-uw.a.run.app/api/orders) | ✔ | **cust**, **staff**, **admin** |
 </div>
 
 ## How to Run the App

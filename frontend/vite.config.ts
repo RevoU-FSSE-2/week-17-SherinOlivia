@@ -7,8 +7,8 @@ dotenv.config()
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/',
-  // base: '/week-17-sherinolivia/',
+  // base: '/',
+  base: '/week-17-sherinolivia/',
   build: {
     outDir: 'dist',
     rollupOptions: {

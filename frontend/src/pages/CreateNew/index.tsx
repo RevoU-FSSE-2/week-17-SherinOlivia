@@ -12,12 +12,17 @@ const CreateNew = () => {
         try {
             const response = await fetch (apiUrl, {
                 method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
                 credentials: 'include',
                 body: JSON.stringify(values)
             })
+            console.log(values)
+            console.log(response)
             if (response.ok) {
-                console.log(response)
-                await response.json()
+                const data = await response.json();
+                console.log('Response data:', data);
                 navigate('/dashboard');  
             } else {
                 console.log("Failed to create new Order")

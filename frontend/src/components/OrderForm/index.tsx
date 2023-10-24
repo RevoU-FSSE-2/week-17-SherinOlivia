@@ -43,35 +43,35 @@ const OrderForm = ({onSubmit, order, content}: Props) => {
                     <Form name="basic" autoComplete="off" >
                         <div className={styles.middle}>
                             <TextLevel level={3} title={content} />
-                            <Link to={'/'} className={styles.link}>Back</Link>
+                            <Link to={'/dashboard'} className={styles.link}>Back</Link>
                         </div>
 
 
-                        <AntForm.Item label="Product Name" name="Product Name">
+                        <AntForm.Item label="Product Name" htmlFor="product_name">
                             <div>
-                                <Field name="Product Name" as={Input} placeholder="Enter Product Name" />
+                                <Field id="product_name" name="product name" as={Input} placeholder="Enter Product Name" />
                         
                                 <span className={styles.error}>
-                                    <ErrorMessage name="Product Name" />
+                                    <ErrorMessage name="product name" />
                                 </span>
                             </div>
 
                         </AntForm.Item>
 
-                        <AntForm.Item label="Order Qty" name="Order Qty">
+                        <AntForm.Item label="Order Qty" htmlFor="order_qty">
                             <div>
-                                <Field name="Order Qty" as={Input} placeholder="Enter Order Qty" />
+                                <Field id="order_qty" name="order qty" as={Input} placeholder="Enter Order Qty" />
                         
                                 <span className={styles.error}>
-                                    <ErrorMessage name="Order Qty" />
+                                    <ErrorMessage name="order qty" />
                                 </span>
                             </div>
 
                         </AntForm.Item>
 
-                        <AntForm.Item label="Status" name="status">
+                        <AntForm.Item label="Status" htmlFor="status">
                             <div>
-                                <Select placeholder="Select Status" onChange={(value) => {
+                                <Select id="status" placeholder="Select Status" onChange={(value) => {
                                 formikProps.setFieldValue("status", value);
                                 }} 
                                 value={formikProps.values.status || undefined}

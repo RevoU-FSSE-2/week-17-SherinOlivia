@@ -10,10 +10,11 @@ const adminConfig_1 = __importDefault(require("./config/adminConfig"));
 const mainRouter_1 = __importDefault(require("./router/mainRouter"));
 const middleware_1 = __importDefault(require("./middleware"));
 // import * as functions from 'firebase-functions';
-const http_1 = __importDefault(require("http"));
+// import http, { Server } from 'http'
 const app = (0, express_1.default)();
-const server = http_1.default.createServer(app);
-let port;
+const port = process.env.PORT || 8080;
+// const server: Server = http.createServer(app)
+// let PORT: number;
 // middleware
 (0, middleware_1.default)(app);
 // DB Connection (Railway)
@@ -37,14 +38,16 @@ dbConnection_1.DB.connect(function () {
     (0, adminConfig_1.default)();
 // router
 app.use(mainRouter_1.default);
-server.listen(0, () => {
-    const address = server.address();
-    if (address && typeof address !== 'string') {
-        port = address.port || 5555;
-        console.log(`Server is running on port:${port}`);
-    }
-    else {
-        console.error("Server address is not available.");
-    }
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
 });
+// server.listen(0, () => {
+//     const address = server.address();
+//     if(address && typeof address !== 'string'){
+//         PORT = address.port || 5555;
+//         console.log(`Server is running on port:${PORT}`)
+//     } else {
+//         console.error("Server address is not available.")
+//     }
+// })
 // export const week_17_sherinolivia = functions.https.onRequest(app)
